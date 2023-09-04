@@ -34,7 +34,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
       - MYSQL_HOST=db
-      - MYSQL_PORT=3306
+      - MYSQL_PORT=33060
     depends_on:
       - db
 
