@@ -30,11 +30,8 @@ services:
     ports:
       - 3006:3006
     restart: on-failure
-    environment:
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=password
-      - MYSQL_HOST=db
-      - MYSQL_PORT=33060
+    env_file:
+      - .env
     depends_on:
       - db
 
@@ -47,7 +44,6 @@ services:
     ports:
       - 33060:3306
     restart: on-failure
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=rpsdb
-      - MYSQL_DEFAULT_AUTH=mysql_native_password
+    env_file:
+      - .env
+    
