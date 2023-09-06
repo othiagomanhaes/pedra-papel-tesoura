@@ -43,9 +43,11 @@ services:
     container_name: rps_db
     volumes:
       - ./database:/var/lib/mysql # persistent data
+      # - ./db_rps.sql:/docker-entrypoint-initdb.d/db_rps.sql
     ports:
       - 33060:3306
     restart: on-failure
     environment:
       - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=rpsdb
       - MYSQL_DEFAULT_AUTH=mysql_native_password
