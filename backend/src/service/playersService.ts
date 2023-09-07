@@ -17,5 +17,10 @@ const allPlayers = async () => {
   return allPlayersList;
 }
 
-const PlayerService = { createPlayer, login, allPlayers };
+const playerById = async (id: number) => {
+  const player = await PlayerModel.playerById(id);
+  return player;
+}
+
+const PlayerService = { createPlayer, login, allPlayers, playerById };
 export default PlayerService;

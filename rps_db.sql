@@ -14,25 +14,7 @@ CREATE TABLE rpsdb_dev.players (
   date DATE NOT NULL
 );
 
-CREATE TABLE rpsdb_dev.five_rounds (
-  username_id INT NOT NULL,
-  rounds_id INT NOT NULL,
-  points INT NOT NULL,
-  date DATE NOT NULL,
-  FOREIGN KEY (username_id) REFERENCES rpsdb_dev.players (id),
-  FOREIGN KEY (rounds_id) REFERENCES rpsdb_dev.rounds (id)
-);
-
-CREATE TABLE rpsdb_dev.ten_rounds (
-  username_id INT NOT NULL,
-  rounds_id INT NOT NULL,
-  points INT NOT NULL,
-  date DATE NOT NULL,
-  FOREIGN KEY (username_id) REFERENCES rpsdb_dev.players (id),
-  FOREIGN KEY (rounds_id) REFERENCES rpsdb_dev.rounds (id)
-);
-
-CREATE TABLE rpsdb_dev.fifteen_rounds (
+CREATE TABLE rpsdb_dev.games (
   username_id INT NOT NULL,
   rounds_id INT NOT NULL,
   points INT NOT NULL,
@@ -66,25 +48,7 @@ INSERT INTO rpsdb_dev.players VALUES (default, 'test', 'test@email.com', '2023-0
 --   date DATE
 -- );
 
--- CREATE TABLE rpsdb_prod.five_rounds (
---   username_id INT NOT NULL,
---   rounds_id INT NOT NULL,
---   points INT NOT NULL,
---   date DATE NOT NULL,
---   FOREIGN KEY (username_id) REFERENCES rpsdb_prod.players (id),
---   FOREIGN KEY (rounds_id) REFERENCES rpsdb_prod.rounds (id)
--- );
-
--- CREATE TABLE rpsdb_prod.ten_rounds (
---   username_id INT NOT NULL,
---   rounds_id INT NOT NULL,
---   points INT NOT NULL,
---   date DATE NOT NULL,
---   FOREIGN KEY (username_id) REFERENCES rpsdb_prod.players (id),
---   FOREIGN KEY (rounds_id) REFERENCES rpsdb_prod.rounds (id)
--- );
-
--- CREATE TABLE rpsdb_prod.fifteen_rounds (
+-- CREATE TABLE rpsdb_prod.games (
 --   username_id INT NOT NULL,
 --   rounds_id INT NOT NULL,
 --   points INT NOT NULL,

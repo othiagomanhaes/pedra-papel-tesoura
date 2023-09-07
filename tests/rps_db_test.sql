@@ -14,25 +14,7 @@ CREATE TABLE rpsdb_test.players (
   date DATE
 );
 
-CREATE TABLE rpsdb_test.five_rounds (
-  username_id INT NOT NULL,
-  rounds_id INT NOT NULL,
-  points INT NOT NULL,
-  date DATE NOT NULL,
-  FOREIGN KEY (username_id) REFERENCES rpsdb_test.players (id),
-  FOREIGN KEY (rounds_id) REFERENCES rpsdb_test.rounds (id)
-);
-
-CREATE TABLE rpsdb_test.ten_rounds (
-  username_id INT NOT NULL,
-  rounds_id INT NOT NULL,
-  points INT NOT NULL,
-  date DATE NOT NULL,
-  FOREIGN KEY (username_id) REFERENCES rpsdb_test.players (id),
-  FOREIGN KEY (rounds_id) REFERENCES rpsdb_test.rounds (id)
-);
-
-CREATE TABLE rpsdb_test.fifteen_rounds (
+CREATE TABLE rpsdb_test.games (
   username_id INT NOT NULL,
   rounds_id INT NOT NULL,
   points INT NOT NULL,

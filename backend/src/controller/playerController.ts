@@ -35,5 +35,18 @@ const allPlayers = async (_req: Request<ILogin>, res: Response) => {
   }
 }
 
-const PlayerController = { createPlayer, login, allPlayers };
+const playerById = async (req: Request<IPlayer>, res: Response) => {
+  try {
+    const { id } = req.params;
+    
+    const player = await PlayerService.playerById(Number(id));
+    if(player) {
+      return res.status(200).json({ player });
+    }
+  } catch (error) {
+    res.status(404).json({ message: "player not found!" })
+  }
+}
+
+const PlayerController = { createPlayer, login, allPlayers, playerById };
 export default PlayerController;

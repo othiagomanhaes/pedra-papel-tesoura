@@ -34,5 +34,15 @@ const allPlayers = async (): Promise<IPlayer[]> => {
   return result;
 }
 
-const PlayerModel = { createPlayer, login, allPlayers };
+const playerById = async (id: number): Promise<IPlayer> => {
+  const [result] = await connection.execute<ResultSetHeader & IPlayer>(
+    `SELECT * FROM rpsdb_dev.players
+    WHERE id = (?);`,
+    [id]
+  )  
+
+  return result;
+}
+
+const PlayerModel = { createPlayer, login, allPlayers, playerById };
 export default PlayerModel;
