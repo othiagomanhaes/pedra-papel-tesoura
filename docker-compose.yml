@@ -40,7 +40,6 @@ services:
     container_name: rps_db
     volumes:
       - ./database:/var/lib/mysql # persistent data
-      # - ./db_rps.sql:/docker-entrypoint-initdb.d/db_rps.sql
     ports:
       - 33060:3306
     restart: on-failure
