@@ -57,7 +57,7 @@ const allPlayersMonthFIVE = async () => {
     FROM rpsdb_dev.games AS Ga
     INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
     INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
-    WHERE MONTH(Ga.date) = MONTH(NOW()) AND Ro.quantity = 5
+    WHERE DATE_FORMAT(Ga.date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d') AND Ro.quantity = 5
     GROUP BY Pla.username, Ro.quantity
     ORDER BY max_points DESC;`,
   )
@@ -71,7 +71,7 @@ const allPlayersMonthTEN = async () => {
     FROM rpsdb_dev.games AS Ga
     INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
     INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
-    WHERE MONTH(Ga.date) = MONTH(NOW()) AND Ro.quantity = 10
+    WHERE DATE_FORMAT(Ga.date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d') AND Ro.quantity = 10
     GROUP BY Pla.username, Ro.quantity
     ORDER BY max_points DESC;`,
   )
@@ -85,7 +85,7 @@ const allPlayersMonthFIFTEEN = async () => {
     FROM rpsdb_dev.games AS Ga
     INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
     INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
-    WHERE MONTH(Ga.date) = MONTH(NOW()) AND Ro.quantity = 15
+    WHERE DATE_FORMAT(Ga.date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d') AND Ro.quantity = 15
     GROUP BY Pla.username, Ro.quantity
     ORDER BY max_points DESC;`,
   )
