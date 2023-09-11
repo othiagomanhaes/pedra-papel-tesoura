@@ -1,4 +1,4 @@
-import { ResultSetHeader, RowDataPacket, OkPacketParams } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
 import ILogin from '../interface/login.interface';
 import IPlayer from '../interface/player.interface';

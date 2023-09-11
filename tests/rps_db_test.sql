@@ -15,12 +15,14 @@ CREATE TABLE rpsdb_test.players (
 );
 
 CREATE TABLE rpsdb_test.games (
+  id INT PRIMARY KEY auto_increment,
   username_id INT NOT NULL,
   rounds_id INT NOT NULL,
   points INT NOT NULL,
   date DATE NOT NULL,
   FOREIGN KEY (username_id) REFERENCES rpsdb_test.players (id),
-  FOREIGN KEY (rounds_id) REFERENCES rpsdb_test.rounds (id)
+  FOREIGN KEY (rounds_id) REFERENCES rpsdb_test.rounds (id),
+  PRIMARY KEY (username_id, rounds_id)
 );
 
 INSERT INTO rpsdb_test.rounds (quantity) VALUES (5);
