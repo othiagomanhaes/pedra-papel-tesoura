@@ -7,7 +7,7 @@ const createPlayer = async (req: Request<IPlayer>, res: Response) => {
   try {
     const { body } = req;
     const newPlayer = await PlayerService.createPlayer(body);
-    return res.status(201).json({ message: newPlayer });
+    res.status(201).json({ message: newPlayer });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -17,12 +17,12 @@ const login = async (req: Request<ILogin>, res: Response) => {
   try {
     const { body } = req;
     const player = await PlayerService.login(body);
-    if(player) {
-      return res.status(200).json({ message: "Login efetuado com sucesso!"})
+    if (player.length > 0) {
+      return res.status(200).json({ message: "Login efetuado com sucesso!", player });
     }
-    throw new Error();
+    return res.status(400).json({ message: 'username ou email não cadastrados'});
   } catch (error) {
-    res.status(401).json({ message: 'Username or password invalid' });
+    res.status(401).json(error);
   }
 }
 

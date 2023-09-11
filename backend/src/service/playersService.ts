@@ -8,7 +8,7 @@ const createPlayer = async (player: IPlayer): Promise<IPlayer> => {
 };
 
 const login = async (loginData: ILogin) => {
-  const player = await PlayerModel.login(loginData);
+  const player = await PlayerModel.login(loginData);  
   return player;
 }
 

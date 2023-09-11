@@ -44,8 +44,8 @@ const playerById = async (id: number): Promise<IPlayer> => {
   return result;
 }
 
-const playerByEmail = async (email: string) => {
-  const [result] = await connection.execute(
+const playerByEmail = async (email: string): Promise<IPlayer> => {
+  const [result] = await connection.execute<ResultSetHeader & IPlayer>(
     `SELECT * FROM rpsdb_dev.players WHERE email = ?`,
     [email]
   )
