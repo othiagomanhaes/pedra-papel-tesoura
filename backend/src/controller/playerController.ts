@@ -7,9 +7,7 @@ const createPlayer = async (req: Request<IPlayer>, res: Response) => {
   try {
     const { body } = req;
     const newPlayer = await PlayerService.createPlayer(body);
-    if(newPlayer) {
-      return res.status(201).json({ newPlayer });
-    }
+    return res.status(201).json({ message: newPlayer });
   } catch (error) {
     res.status(500).json(error);
   }

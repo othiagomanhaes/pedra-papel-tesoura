@@ -1,4 +1,4 @@
-import {ResultSetHeader, RowDataPacket} from 'mysql2';
+import { ResultSetHeader, RowDataPacket, OkPacketParams } from 'mysql2';
 import connection from './connection';
 import ILogin from '../interface/login.interface';
 import IPlayer from '../interface/player.interface';
@@ -44,5 +44,25 @@ const playerById = async (id: number): Promise<IPlayer> => {
   return result;
 }
 
-const PlayerModel = { createPlayer, login, allPlayers, playerById };
+const playerByEmail = async (email: string) => {
+  const [result] = await connection.execute(
+    `SELECT * FROM rpsdb_dev.players WHERE email = ?`,
+    [email]
+  )
+
+  return result;
+}
+
+const playerByUsername = async (username: string): Promise<IPlayer> => {
+  const [result] = await connection.execute<ResultSetHeader & IPlayer>(
+    `SELECT * FROM rpsdb_dev.players WHERE username = ?`,
+    [username]
+  )
+
+  return result;
+}
+
+const PlayerModel = { 
+  createPlayer, login, allPlayers, playerById, playerByEmail, playerByUsername 
+};
 export default PlayerModel;
