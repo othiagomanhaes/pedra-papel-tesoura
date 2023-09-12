@@ -93,6 +93,89 @@ const allPlayersMonthFIFTEEN = async () => {
   return result;
 }
 
+const allPlayersWeekFIVE = async () => {
+  const [result] = await connection.execute(
+    `SELECT Pla.username, Ro.quantity, MAX(Ga.points) AS max_points
+    FROM rpsdb_dev.games AS Ga
+    INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
+    INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
+    WHERE WEEk(Ga.date) = WEEK(NOW()) AND Ro.quantity = 5
+    GROUP BY Pla.username, Ro.quantity
+    ORDER BY max_points DESC;`,
+  )
+
+  return result;
+}
+
+const allPlayersWeekTEN = async () => {
+  const [result] = await connection.execute(
+    `SELECT Pla.username, Ro.quantity, MAX(Ga.points) AS max_points
+    FROM rpsdb_dev.games AS Ga
+    INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
+    INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
+    WHERE WEEk(Ga.date) = WEEK(NOW()) AND Ro.quantity = 10
+    GROUP BY Pla.username, Ro.quantity
+    ORDER BY max_points DESC;`,
+  )
+
+  return result;
+}
+
+const allPlayersWeekFIFTEEN = async () => {
+  const [result] = await connection.execute(
+    `SELECT Pla.username, Ro.quantity, MAX(Ga.points) AS max_points
+    FROM rpsdb_dev.games AS Ga
+    INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
+    INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
+    WHERE WEEk(Ga.date) = WEEK(NOW()) AND Ro.quantity = 15
+    GROUP BY Pla.username, Ro.quantity
+    ORDER BY max_points DESC;`,
+  )
+
+  return result;
+}
+
+const allPlayersDayFIVE = async () => {
+  const [result] = await connection.execute(
+    `SELECT Pla.username, Ro.quantity, MAX(Ga.points) AS max_points
+    FROM rpsdb_dev.games AS Ga
+    INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
+    INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
+    WHERE DATE_FORMAT(Ga.date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d') AND Ro.quantity = 5
+    GROUP BY Pla.username, Ro.quantity
+    ORDER BY max_points DESC;`,
+  )
+
+  return result;
+}
+
+const allPlayersDayTEN = async () => {
+  const [result] = await connection.execute(
+    `SELECT Pla.username, Ro.quantity, MAX(Ga.points) AS max_points
+    FROM rpsdb_dev.games AS Ga
+    INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
+    INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
+    WHERE DATE_FORMAT(Ga.date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d') AND Ro.quantity = 10
+    GROUP BY Pla.username, Ro.quantity
+    ORDER BY max_points DESC;`,
+  )
+
+  return result;
+}
+
+const allPlayersDayFIFTEEN = async () => {
+  const [result] = await connection.execute(
+    `SELECT Pla.username, Ro.quantity, MAX(Ga.points) AS max_points
+    FROM rpsdb_dev.games AS Ga
+    INNER JOIN rpsdb_dev.players AS Pla ON Pla.id = Ga.username_id
+    INNER JOIN rpsdb_dev.rounds AS Ro ON Ro.id = Ga.rounds_id
+    WHERE DATE_FORMAT(Ga.date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d') AND Ro.quantity = 15
+    GROUP BY Pla.username, Ro.quantity
+    ORDER BY max_points DESC;`,
+  )
+
+  return result;
+}
 
 const GamesModel = { 
   createGame,
@@ -101,6 +184,12 @@ const GamesModel = {
   getGameByPlayerWeek,
   allPlayersMonthFIVE,
   allPlayersMonthTEN,
-  allPlayersMonthFIFTEEN
+  allPlayersMonthFIFTEEN,
+  allPlayersWeekFIVE,
+  allPlayersWeekTEN,
+  allPlayersWeekFIFTEEN,
+  allPlayersDayFIVE,
+  allPlayersDayTEN,
+  allPlayersDayFIFTEEN
  };
 export default GamesModel;

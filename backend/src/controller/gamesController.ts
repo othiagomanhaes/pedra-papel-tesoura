@@ -69,6 +69,59 @@ const allPlayersMonthFIFTEEN = async (_req: Request<IGame>, res: Response) => {
   }
 }
 
+const allPlayersWeekFIVE = async (_req: Request<IGame>, res: Response) => {
+  try {
+    const allWeekFIVE = await GamesService.allPlayersWeekFIVE();
+    res.status(200).json({ message: allWeekFIVE });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
+const allPlayersWeekTEN = async (_req: Request<IGame>, res: Response) => {
+  try {
+    const allWeekTEN = await GamesService.allPlayersWeekTEN();
+    res.status(200).json({ message: allWeekTEN });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
+const allPlayersWeekFIFTEEN = async (_req: Request<IGame>, res: Response) => {
+  try {
+    const allWeeKFIFTEEN = await GamesService.allPlayersWeekFIFTEEN();
+    res.status(200).json({ message: allWeeKFIFTEEN });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
+const allPlayersDayFIVE = async (_req: Request<IGame>, res: Response) => {
+  try {
+    const allDayFIVE = await GamesService.allPlayersDayFIVE();
+    res.status(200).json({ message: allDayFIVE });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
+const allPlayersDayTEN = async (_req: Request<IGame>, res: Response) => {
+  try {
+    const allDayTEN = await GamesService.allPlayersDayTEN();
+    res.status(200).json({ message: allDayTEN });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
+const allPlayersDayFIFTEEN = async (_req: Request<IGame>, res: Response) => {
+  try {
+    const allDayFIFTEEN = await GamesService.allPlayersDayFIFTEEN();
+    res.status(200).json({ message: allDayFIFTEEN });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
 
 const GamesController = { 
   createGame,
@@ -77,6 +130,12 @@ const GamesController = {
   getGameByPlayerWeek,
   allPlayersMonthFIVE,
   allPlayersMonthTEN,
-  allPlayersMonthFIFTEEN
+  allPlayersMonthFIFTEEN,
+  allPlayersWeekFIVE,
+  allPlayersWeekTEN,
+  allPlayersWeekFIFTEEN,
+  allPlayersDayFIVE,
+  allPlayersDayTEN,
+  allPlayersDayFIFTEEN
 }
 export default GamesController;

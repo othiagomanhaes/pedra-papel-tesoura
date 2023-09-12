@@ -36,6 +36,36 @@ const allPlayersMonthFIFTEEN = async () => {
   return allMonthFIFTEEN;
 }
 
+const allPlayersWeekFIVE = async () => {
+  const allWeekFIVE = await GamesModel.allPlayersWeekFIVE();
+  return allWeekFIVE;
+}
+
+const allPlayersWeekTEN = async () => {
+  const allWeekTEN = await GamesModel.allPlayersWeekTEN();
+  return allWeekTEN;
+}
+
+const allPlayersWeekFIFTEEN = async () => {
+  const allWeeKFIFTEEN = await GamesModel.allPlayersWeekFIFTEEN();
+  return allWeeKFIFTEEN;
+}
+
+const allPlayersDayFIVE = async () => {
+  const allDayFIVE = await GamesModel.allPlayersDayFIVE();
+  return allDayFIVE;
+}
+
+const allPlayersDayTEN= async () => {
+  const allDayTEN = await GamesModel.allPlayersDayTEN();
+  return allDayTEN;
+}
+
+const allPlayersDayFIFTEEN = async () => {
+  const allDayFIFTEEN = await GamesModel.allPlayersDayFIFTEEN();
+  return allDayFIFTEEN;
+}
+
 const GamesService = { 
   createGame,
   getGameByPlayerMonth,
@@ -43,7 +73,13 @@ const GamesService = {
   getGameByPlayerWeek,
   allPlayersMonthFIVE,
   allPlayersMonthTEN,
-  allPlayersMonthFIFTEEN
+  allPlayersMonthFIFTEEN,
+  allPlayersWeekFIVE,
+  allPlayersWeekTEN,
+  allPlayersWeekFIFTEEN,
+  allPlayersDayFIVE,
+  allPlayersDayTEN,
+  allPlayersDayFIFTEEN
  };
 
 export default GamesService;
