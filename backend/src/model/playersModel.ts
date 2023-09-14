@@ -62,7 +62,41 @@ const playerByUsername = async (username: string): Promise<IPlayer> => {
   return result;
 }
 
+const updateEmailById = async (id: number, email: string): Promise<void> => {
+  const [result] = await connection.execute(
+    `UPDATE rpsdb_dev.players
+    SET email = ?
+    WHERE id = ?;`,
+    [email, id]
+  )
+}
+
+const updateUsernameById = async (id: number, username: string): Promise<void> => {
+  const [result] = await connection.execute(
+    `UPDATE rpsdb_dev.players
+    SET username = ?
+    WHERE id = ?;`,
+    [username, id]
+  )
+}
+
+const deleteById = async (id: number ): Promise<void> => {
+  const [result] = await connection.execute(
+    `DELETE FROM rpsdb_dev.players
+    WHERE id = ?;`,
+    [id]
+  )
+}
+
 const PlayerModel = { 
-  createPlayer, login, allPlayers, playerById, playerByEmail, playerByUsername 
+  createPlayer,
+  login,
+  allPlayers,
+  playerById,
+  playerByEmail,
+  playerByUsername,
+  updateEmailById,
+  updateUsernameById,
+  deleteById
 };
 export default PlayerModel;

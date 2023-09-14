@@ -19,9 +19,8 @@ CREATE TABLE rpsdb_dev.games (
   rounds_id INT NOT NULL,
   points INT NOT NULL,
   date DATE NOT NULL,
-  FOREIGN KEY (username_id) REFERENCES rpsdb_dev.players (id),
-  FOREIGN KEY (rounds_id) REFERENCES rpsdb_dev.rounds (id),
-  PRIMARY KEY (username_id, rounds_id)
+  FOREIGN KEY (username_id) REFERENCES rpsdb_dev.players (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (rounds_id) REFERENCES rpsdb_dev.rounds (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO rpsdb_dev.rounds (quantity) VALUES (5);
@@ -55,9 +54,8 @@ INSERT INTO rpsdb_dev.players VALUES (default, 'test', 'test@email.com', '2023-0
 --   rounds_id INT NOT NULL,
 --   points INT NOT NULL,
 --   date DATE NOT NULL,
---   FOREIGN KEY (username_id) REFERENCES rpsdb_prod.players (id),
---   FOREIGN KEY (rounds_id) REFERENCES rpsdb_prod.rounds (id),
---   PRIMARY KEY (username_id, rounds_id)
+--   FOREIGN KEY (username_id) REFERENCES rpsdb_prod.players (id) ON DELETE CASCADE ON UPDATE CASCADE,
+--   FOREIGN KEY (rounds_id) REFERENCES rpsdb_prod.rounds (id) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
 
 -- INSERT INTO rpsdb_prod.rounds (quantity) VALUES (5);

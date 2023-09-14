@@ -22,5 +22,25 @@ const playerById = async (id: number) => {
   return player;
 }
 
-const PlayerService = { createPlayer, login, allPlayers, playerById };
+const updateEmailById = async (id: number, email: string) => {
+  await PlayerModel.updateEmailById(id, email); 
+}
+
+const updateUsernameById = async (id: number, username: string) => {
+  await PlayerModel.updateUsernameById(id, username); 
+}
+
+const deleteById = async (id: number) => {
+  await PlayerModel.deleteById(id);
+}
+
+const PlayerService = { 
+  createPlayer,
+  login,
+  allPlayers,
+  playerById,
+  updateEmailById,
+  updateUsernameById,
+  deleteById
+};
 export default PlayerService;

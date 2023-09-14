@@ -20,9 +20,8 @@ CREATE TABLE rpsdb_test.games (
   rounds_id INT NOT NULL,
   points INT NOT NULL,
   date DATE NOT NULL,
-  FOREIGN KEY (username_id) REFERENCES rpsdb_test.players (id),
-  FOREIGN KEY (rounds_id) REFERENCES rpsdb_test.rounds (id),
-  PRIMARY KEY (username_id, rounds_id)
+  FOREIGN KEY (username_id) REFERENCES rpsdb_test.players (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (rounds_id) REFERENCES rpsdb_test.rounds (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO rpsdb_test.rounds (quantity) VALUES (5);
