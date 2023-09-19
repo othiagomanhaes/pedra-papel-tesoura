@@ -80,6 +80,24 @@ const updateUsernameById = async (id: number, username: string): Promise<void> =
   )
 }
 
+const updateBioById = async (id: number, bio: string): Promise<void> => {
+  const [result] = await connection.execute(
+    `UPDATE rpsdb_dev.players
+    SET bio = ?
+    WHERE id = ?;`,
+    [bio, id]
+  )
+}
+
+const updateImageById = async (id: number, image: string): Promise<void> => {
+  const [result] = await connection.execute(
+    `UPDATE rpsdb_dev.players
+    SET image = ?
+    WHERE id = ?;`,
+    [image, id]
+  )
+}
+
 const deleteById = async (id: number ): Promise<void> => {
   const [result] = await connection.execute(
     `DELETE FROM rpsdb_dev.players
@@ -97,6 +115,8 @@ const PlayerModel = {
   playerByUsername,
   updateEmailById,
   updateUsernameById,
-  deleteById
+  deleteById,
+  updateBioById,
+  updateImageById
 };
 export default PlayerModel;

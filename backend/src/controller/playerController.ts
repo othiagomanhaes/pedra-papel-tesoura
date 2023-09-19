@@ -69,6 +69,28 @@ const updateUsernameById = async (req: Request<IPlayer>, res: Response) => {
   }
 }
 
+const updateBioById = async (req: Request<IPlayer>, res: Response) => {
+  try {
+    const { id, bio } = req.body;
+    await PlayerService.updateBioById(id, bio);
+    return res.status(200).json({ message: 'bio atualizada com sucesso'});
+    
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
+const updateImageById = async (req: Request<IPlayer>, res: Response) => {
+  try {
+    const { id, image } = req.body;
+    await PlayerService.updateBioById(id, image);
+    return res.status(200).json({ message: 'imagem atualizada com sucesso'});
+    
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 const deleteById = async (req: Request<IPlayer>, res: Response) => {
   try {
     const { id } = req.params;
@@ -87,6 +109,8 @@ const PlayerController = {
   playerById,
   updateEmailById,
   updateUsernameById,
-  deleteById
+  deleteById,
+  updateBioById,
+  updateImageById
 };
 export default PlayerController;

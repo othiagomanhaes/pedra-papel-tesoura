@@ -30,6 +30,14 @@ const updateUsernameById = async (id: number, username: string) => {
   await PlayerModel.updateUsernameById(id, username); 
 }
 
+const updateBioById = async (id: number, bio: string) => {
+  await PlayerModel.updateBioById(id, bio); 
+}
+
+const updateImageById = async (id: number, image: string) => {
+  await PlayerModel.updateBioById(id, image); 
+}
+
 const deleteById = async (id: number) => {
   await PlayerModel.deleteById(id);
 }
@@ -41,6 +49,8 @@ const PlayerService = {
   playerById,
   updateEmailById,
   updateUsernameById,
-  deleteById
+  deleteById,
+  updateBioById,
+  updateImageById
 };
 export default PlayerService;

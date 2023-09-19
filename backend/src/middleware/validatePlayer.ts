@@ -53,10 +53,8 @@ const verifyAlreadyPlayer = async (req: Request<IPlayer>, res: Response, next: N
 
 const verifyAlreadyPlayerById = async (req: Request<IPlayer>, res: Response, next: NextFunction) => {
 
-  const obj = {
-    id: Number(req.params.id) | req.body.id,
-  }
-  const alreadyPlayerId = await PlayerModel.playerById(Number(obj.id));
+  const obj = {id: Number(req.params.id) | Number(req.body.id) }
+  const alreadyPlayerId = await PlayerModel.playerById(obj.id);
   
   const becameString = JSON.stringify(alreadyPlayerId);
   const becameParse = JSON.parse(becameString);
@@ -82,12 +80,22 @@ const verifyUsername = async (req: Request<IPlayer>, res: Response, next: NextFu
   next();
 }
 
+const verifyBio = async (req: Request<IPlayer>, res: Response, next: NextFunction) => {
+  const { bio } = req.body;
+  const validateBio = bio.length <= 250;
+
+  if (!validateBio) return res.status(400).json({ message: 'bio grande demais!'});
+
+  next();
+}
+
 const middlewares = { 
   verifyAlreadyPlayer,
   verifyPlayer,
   verifyAlreadyPlayerById,
   verifyEmail,
-  verifyUsername
+  verifyUsername,
+  verifyBio
 }
 
 export default middlewares;
