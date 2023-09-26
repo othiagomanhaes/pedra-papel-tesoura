@@ -1,6 +1,7 @@
 import PlayerModel from '../model/playersModel';
 import ILogin from '../interface/login.interface';
 import IPlayer from '../interface/player.interface';
+import statisticModel from '../model/statisticsModel';
 
 const createPlayer = async (player: IPlayer): Promise<IPlayer> => {
   const newPlayer = await PlayerModel.createPlayer(player);
@@ -22,6 +23,11 @@ const playerById = async (id: number) => {
   return player;
 }
 
+const statisticPlayerById = async (id: number) => {
+  const statisc = await statisticModel.selecStatisticById(id);
+  return statisc;
+}
+
 const updateEmailById = async (id: number, email: string) => {
   await PlayerModel.updateEmailById(id, email); 
 }
@@ -35,7 +41,7 @@ const updateBioById = async (id: number, bio: string) => {
 }
 
 const updateImageById = async (id: number, image: string) => {
-  await PlayerModel.updateBioById(id, image); 
+  await PlayerModel.updateImageById(id, image); 
 }
 
 const deleteById = async (id: number) => {
@@ -51,6 +57,7 @@ const PlayerService = {
   updateUsernameById,
   deleteById,
   updateBioById,
-  updateImageById
+  updateImageById,
+  statisticPlayerById
 };
 export default PlayerService;

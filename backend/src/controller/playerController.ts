@@ -47,6 +47,20 @@ const playerById = async (req: Request<IPlayer>, res: Response) => {
   }
 }
 
+const statisticPlayerById = async (req: Request<IPlayer>, res: Response) => {
+  try {
+    const obj = {
+      id: Number(req.params.id) | Number(req.body.id),
+    }
+
+    const statiscPlayer = await PlayerService.statisticPlayerById(obj.id);
+    return res.status(200).json({ statiscPlayer });
+
+  } catch (error) {
+    res.status(404).json({ error })
+  }
+}
+
 const updateEmailById = async (req: Request<IPlayer>, res: Response) => {
   try {
     const { id, email } = req.body;
@@ -83,7 +97,7 @@ const updateBioById = async (req: Request<IPlayer>, res: Response) => {
 const updateImageById = async (req: Request<IPlayer>, res: Response) => {
   try {
     const { id, image } = req.body;
-    await PlayerService.updateBioById(id, image);
+    await PlayerService.updateImageById(id, image);
     return res.status(200).json({ message: 'imagem atualizada com sucesso'});
     
   } catch (error) {
@@ -111,6 +125,7 @@ const PlayerController = {
   updateUsernameById,
   deleteById,
   updateBioById,
-  updateImageById
+  updateImageById,
+  statisticPlayerById
 };
 export default PlayerController;

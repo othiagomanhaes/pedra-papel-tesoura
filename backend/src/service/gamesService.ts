@@ -1,9 +1,25 @@
 import IGame from '../interface/game.interface';
+import IStatisc from '../interface/statistic.interface';
 import GamesModel from '../model/gamesModel';
+import statisticModel from '../model/statisticsModel';
+import PlayerModel from '../model/playersModel';
 
-const createGame = async (game: IGame) => {
-  const newGame = await GamesModel.createGame(game);
-  return newGame;
+const createGame = async (game: IGame & IStatisc) => {
+  const { username_id, points } = game;
+  await GamesModel.createGame(game);
+  const statisticById = await statisticModel.selecStatisticById(username_id);
+
+  const statisticString = JSON.stringify(statisticById);
+  const statiscParse = JSON.parse(statisticString);
+  if (statiscParse.length > 0) {
+    await statisticModel.updtaeStatisc(game);
+    await PlayerModel.updatePointsById(username_id, points);
+    return await PlayerModel.updtadeLevelById(username_id);
+  }
+
+  await statisticModel.createStatisc(game);
+  await PlayerModel.updatePointsById(username_id, points);
+  await PlayerModel.updtadeLevelById(username_id);
 }
 
 const getGameByPlayerMonth = async (game: IGame) => {

@@ -5,8 +5,8 @@ interface IPlayer {
   date?: string,
   total_points?: number,
   level?: number,
-  image: string,
-  bio: string
+  image?: string,
+  bio?: string
 }
 
 export default IPlayer;

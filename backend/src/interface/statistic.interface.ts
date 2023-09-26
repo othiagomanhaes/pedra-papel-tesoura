@@ -1,4 +1,4 @@
-interface IStatisc {
+interface IStatistic {
   username_id: number,
   victory: number,
   draw: number,
@@ -6,3 +6,5 @@ interface IStatisc {
   rounds: number,
   matchs: number,
 }
+
+export default IStatistic;

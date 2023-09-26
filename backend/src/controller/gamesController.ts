@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import IGame from '../interface/game.interface';
 import GamesService from '../service/gamesService';
+import IStatisc from '../interface/statistic.interface';
 
-const createGame = async (req: Request<IGame>, res: Response) => {
+const createGame = async (req: Request<IGame & IStatisc>, res: Response) => {
   try {
     const { body } = req;
     await GamesService.createGame(body);

@@ -63,7 +63,7 @@ const playerByUsername = async (username: string): Promise<IPlayer> => {
 }
 
 const updateEmailById = async (id: number, email: string): Promise<void> => {
-  const [result] = await connection.execute(
+  await connection.execute(
     `UPDATE rpsdb_dev.players
     SET email = ?
     WHERE id = ?;`,
@@ -72,7 +72,7 @@ const updateEmailById = async (id: number, email: string): Promise<void> => {
 }
 
 const updateUsernameById = async (id: number, username: string): Promise<void> => {
-  const [result] = await connection.execute(
+  await connection.execute(
     `UPDATE rpsdb_dev.players
     SET username = ?
     WHERE id = ?;`,
@@ -81,7 +81,7 @@ const updateUsernameById = async (id: number, username: string): Promise<void> =
 }
 
 const updateBioById = async (id: number, bio: string): Promise<void> => {
-  const [result] = await connection.execute(
+  await connection.execute(
     `UPDATE rpsdb_dev.players
     SET bio = ?
     WHERE id = ?;`,
@@ -90,7 +90,7 @@ const updateBioById = async (id: number, bio: string): Promise<void> => {
 }
 
 const updateImageById = async (id: number, image: string): Promise<void> => {
-  const [result] = await connection.execute(
+  await connection.execute(
     `UPDATE rpsdb_dev.players
     SET image = ?
     WHERE id = ?;`,
@@ -98,8 +98,29 @@ const updateImageById = async (id: number, image: string): Promise<void> => {
   )
 }
 
+const updatePointsById = async (id: number, points: number): Promise<void> => {
+  await connection.execute(
+    `UPDATE rpsdb_dev.players
+    SET total_points = total_points + ?
+    WHERE id = ?;`,
+    [points, id]
+  )
+}
+
+const updtadeLevelById = async (id: number): Promise<void> => {
+  await connection.execute(
+    `UPDATE rpsdb_dev.players
+    SET level = CASE
+      WHEN total_points < 100 THEN 1
+      ELSE FLOOR(1 + LOG(total_points / 100) / LOG(1.5))
+    END
+    WHERE id = ?;`,
+    [id]
+  )
+}
+
 const deleteById = async (id: number ): Promise<void> => {
-  const [result] = await connection.execute(
+  await connection.execute(
     `DELETE FROM rpsdb_dev.players
     WHERE id = ?;`,
     [id]
@@ -117,6 +138,8 @@ const PlayerModel = {
   updateUsernameById,
   deleteById,
   updateBioById,
-  updateImageById
+  updateImageById,
+  updatePointsById,
+  updtadeLevelById
 };
 export default PlayerModel;

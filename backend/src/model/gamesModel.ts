@@ -6,9 +6,9 @@ const createGame = async (game: IGame) => {
   const [result] = await connection.execute(
     `INSERT INTO rpsdb_dev.games (username_id, rounds_id, points, date)
     VALUES (?, ?, ?, NOW());`,
-    [username_id, round_id, points]
-  )  
-
+    [username_id, round_id, points],
+  );
+  
   return result;
 }
 
