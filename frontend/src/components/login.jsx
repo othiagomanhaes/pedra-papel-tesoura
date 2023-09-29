@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { useRouter } from 'next/router';
+import getLogin from '../services/api';
 
 export default function Login() {
   const [isDisabled, setDisabled] = useState(true);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
-  // const history = useHistory();
   const router = useRouter();
 
   const validateButton = () => {
@@ -25,6 +24,7 @@ export default function Login() {
   }
 
   const makeLogin = () => {
+    const data = getLogin(username, email);
     router.push('/game');
   }
 
@@ -62,6 +62,13 @@ export default function Login() {
         >
           Entrar
         </button>
+
+        {/* <button
+          type="button"
+          onClick={ getUsers }
+        >
+          testApi
+        </button> */}
       </form>
     </>
   )

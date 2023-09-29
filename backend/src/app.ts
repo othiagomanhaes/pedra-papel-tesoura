@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from 'express';
+import cors from 'cors';
 import loginRouter from './routes/login.routes';
 import registerRouter from './routes/register.routes';
 import playerRouter from './routes/player.routes';
@@ -6,6 +7,8 @@ import gameRouter from './routes/game.routes';
 
 
 const app: Application = express();
+
+app.use(cors());
 
 app.use(express.json());
 
