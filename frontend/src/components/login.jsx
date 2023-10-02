@@ -6,6 +6,7 @@ export default function Login() {
   const [isDisabled, setDisabled] = useState(true);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+  const [notFoundUser, setNotFoundUser] = useState('');
   const router = useRouter();
 
   const validateButton = () => {
@@ -23,9 +24,16 @@ export default function Login() {
     if (name === 'email') setEmail(value);
   }
 
-  const makeLogin = () => {
-    const data = getLogin(username, email);
-    router.push('/game');
+  const makeLogin = async () => {
+    const response = await getLogin(username, email);
+    if (response.status === 200) {
+      const { data: { player } } = response;
+      localStorage.setItem("user_id", JSON.stringify(player[0].id));
+      router.push('/game');
+    } else {
+      const { message } = response;
+      setNotFoundUser(message);
+    }
   }
 
   useEffect(() => {
@@ -55,6 +63,7 @@ export default function Login() {
           onChange={ controlGeneralState }
           placeholder="seu email"
         />
+        <p>{ notFoundUser ? notFoundUser : ''}</p>
         <button
           type="button"
           disabled={ isDisabled }
@@ -62,13 +71,6 @@ export default function Login() {
         >
           Entrar
         </button>
-
-        {/* <button
-          type="button"
-          onClick={ getUsers }
-        >
-          testApi
-        </button> */}
       </form>
     </>
   )

@@ -20,7 +20,7 @@ const login = async (req: Request<ILogin>, res: Response) => {
     if (player.length > 0) {
       return res.status(200).json({ message: "Login efetuado com sucesso!", player });
     }
-    return res.status(400).json({ message: 'username ou email não cadastrados'});
+    return res.status(404).json({ message: 'username ou email não cadastrados'});
   } catch (error) {
     res.status(401).json(error);
   }
