@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
+import { getRegister } from '../services/api';
+
 
 export default function Register() {
   const [isDisabled, setDisabled] = useState(true);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+  const [alreadyPlayer, setAlreadyPlayer] = useState('');
   const router = useRouter();
 
   const validateButton = () => {
@@ -22,8 +25,16 @@ export default function Register() {
     if (name === 'email') setEmail(value);
   }
 
-  const makeRegister = () => {
-    router.push('/game');
+  const makeRegister = async () => {
+    const response = await getRegister(username, email)
+    if (response.status === 201) {
+      const { data: { message }} = response;
+      localStorage.setItem("user_id", JSON.stringify(message.id))
+      router.push('/game');
+    } else {
+      const { message } = response;
+      setAlreadyPlayer(message);
+    }
   }
 
   useEffect(() => {
@@ -53,6 +64,7 @@ export default function Register() {
           onChange={ controlGeneralState }
           placeholder="seu email"
         />
+        <p>{ alreadyPlayer ? alreadyPlayer : '' }</p>
         <button
           type="button"
           disabled={ isDisabled }

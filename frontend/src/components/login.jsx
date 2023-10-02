@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import getLogin from '../services/api';
+import { getLogin } from '../services/api';
 
 export default function Login() {
   const [isDisabled, setDisabled] = useState(true);
