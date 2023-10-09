@@ -3,9 +3,25 @@
   padding: 0;
 }
 
-#div-mae-rounds {
+#titulo-choice {
+  margin-left: 31%;
+}
+
+#section-rounds {
+  border: 1px solid blue;
+  width: 65%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#tabela-points {
   border: 1px solid black;
-  width: 40%;
+  width: 15%;
+}
+
+#div-mae-rounds {
+  border: 1px solid red;
+  width: 55%;
   height: 160px;
   display: flex;
   flex-direction: column;
@@ -37,15 +53,25 @@
   border: 3px solid black;
 }
 
+#titulo-rounds {
+  margin-left: 35%;
+}
+
 #section-game {
   border: 1px solid black;
   display: flex;
   justify-content: space-around;
+  width: 65%;
+}
+
+#results {
+  border: 1px solid black;
+  width: 15%;
 }
 
 #div-mae-choices {
   border: 1px solid black;
-  width: 40%;
+  width: 55%;
   height: 160px;
   display: flex;
   flex-direction: column;

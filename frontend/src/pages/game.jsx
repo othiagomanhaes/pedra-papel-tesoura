@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import getTheWinner from '../services/getTheWinner';
 import Header from '../components/header';
+import { createGame } from '../services/api';
+import roundIdObj from '../services/rounds';
 import '../styles/game.css';
 
 export default function Game() {
@@ -22,6 +24,7 @@ export default function Game() {
   const [totalPoints, setTotalPoints] = useState(0);
   
   const playAgain = () => {
+    setRounds(0);
     setTotalPoints(0);
     setResultFinal([]);
     setActualRound(0);
@@ -30,6 +33,33 @@ export default function Game() {
     setDezChecked(true);
     setQuinzeChecked(true);
     setDisabledChoiceRounds(true)
+  }
+
+  const getUserId = () => {
+    const response = localStorage.getItem('user_id');
+    const userId = JSON.parse(response);
+    return Number(userId);
+  }
+
+  const sendTheResult = async () => {
+    if ((resultFinal.length === rounds) && (rounds !== 0) && (totalPoints !== 0)) {
+      let victory = 0;
+      let draw = 0;
+      let defeat = 0;
+      const username_id = getUserId();
+      const round_id = roundIdObj[rounds];
+
+      resultFinal.forEach((ele) => {
+        if (ele === "vitória") victory += 1
+        if (ele === "empate") draw += 1
+        if (ele === "derrota") defeat += 1
+      })
+
+      const gameObj = { username_id, round_id, victory, draw, defeat, matchs: 1, rounds, points: totalPoints }
+
+      const response = await createGame(gameObj);
+      console.log(response);
+    }
   }
 
   const calculaPoints = () => {
@@ -45,6 +75,7 @@ export default function Game() {
 
     if (resultFinal.length === rounds) {
       setTotalPoints(points);
+      // sendTheResult();
     }
   }
 
@@ -127,73 +158,81 @@ export default function Game() {
 
   useEffect(() => {
     calculaPoints();
-  },[computerChoice, playerChoice, resultRound, actualRound, rounds, tesouraChecked, resultFinal])
+    sendTheResult();
+  },[computerChoice, playerChoice, resultRound, actualRound, rounds, tesouraChecked, resultFinal, totalPoints])
 
   return (
     <>
       <Header />
 
-      <h1>Eu sou o game</h1>
-
-      <h2>Escolha quantas rodadas</h2>
-      <div id="div-mae-rounds">
-        <div id="rounds">
-          <label
-            htmlFor="check5"
-            className="check-rounds"
-            onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
-            id={ cincoChecked ? 'check-cinco' : 'check-cinco-checked'}
-          >
-            5
-          </label>
-          <input 
-            type="checkbox"
-            id="check5" 
-            className="checkbox-rounds"
-          />
-
-          <label
-            htmlFor="check10"
-            className="check-rounds"
-            onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
-            id={ dezChecked ? 'check-dez' : 'check-dez-checked'}
-          >
-            10
-          </label>
-          <input
-            type="checkbox"
-            id="check10"
-            className="checkbox-rounds"
-          />
-
-          <label
-            htmlFor="check15"
-            className="check-rounds"
-            onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
-            id={ quinzeChecked ? 'check-quinze' : 'check-quinze-checked'}
-          >
-            15
-          </label>
-          <input
-            type="checkbox"
-            id="check15"
-            className="checkbox-rounds"
-          />
+      <h2 id="titulo-choice">Escolha quantas rodadas</h2>
+      <section id="section-rounds">
+        <div id="tabela-points">
+          <h3>Tabela de pontos:</h3>
+          <p>Vitória = 3pts</p>
+          <p>Empate = 1pt</p>
+          <p>Derrota = 0pt</p>
         </div>
+        <div id="div-mae-rounds">
+          <div id="rounds">
+            <label
+              htmlFor="check5"
+              className="check-rounds"
+              onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
+              id={ cincoChecked ? 'check-cinco' : 'check-cinco-checked'}
+            >
+              5
+            </label>
+            <input 
+              type="checkbox"
+              id="check5" 
+              className="checkbox-rounds"
+            />
 
-        <button
-          id="btn-rounds"
-          onClick={ confirmRounds }
-          disabled={ disabledBtnConfirmar }
-        >
-          Confirmar
-        </button>
-      </div>
+            <label
+              htmlFor="check10"
+              className="check-rounds"
+              onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
+              id={ dezChecked ? 'check-dez' : 'check-dez-checked'}
+            >
+              10
+            </label>
+            <input
+              type="checkbox"
+              id="check10"
+              className="checkbox-rounds"
+            />
 
-      <h3>{`Rodada ${actualRound} de ${rounds}`}</h3>
+            <label
+              htmlFor="check15"
+              className="check-rounds"
+              onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
+              id={ quinzeChecked ? 'check-quinze' : 'check-quinze-checked'}
+            >
+              15
+            </label>
+            <input
+              type="checkbox"
+              id="check15"
+              className="checkbox-rounds"
+            />
+          </div>
+
+          <button
+            id="btn-rounds"
+            onClick={ confirmRounds }
+            disabled={ disabledBtnConfirmar }
+          >
+            Confirmar
+          </button>
+        </div>
+      </section>
+
+      <h3 id="titulo-rounds">{`Rodada ${actualRound} de ${rounds}`}</h3>
       <section id="section-game">
 
         <div id="results">
+          <h3>Resultados da partida:</h3>
             {
               resultFinal.map((result, ind) => {
                 return (

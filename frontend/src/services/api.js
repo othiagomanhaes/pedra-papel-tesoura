@@ -22,3 +22,12 @@ export const getRegister = async (username, email) => {
   }
 }
 
+export const createGame = async ({ username_id, round_id, victory, points, draw, defeat, rounds, matchs }) => {
+  try {
+    const data = await api.post('http://localhost:3006/game', { username_id, round_id, victory, points, draw, defeat, rounds, matchs });
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
