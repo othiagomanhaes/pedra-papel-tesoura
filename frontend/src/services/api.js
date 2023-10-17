@@ -67,3 +67,12 @@ export const getRankingGeralByMonthApi = async () => {
   }
 }
 
+export const getPlayerById = async () => {
+  try {
+    const { data: { allPlayersRankingByMonth }} = await api.get('http://localhost:3006/player/playerRankingByMonth');
+    return allPlayersRankingByMonth;
+  } catch (error) {
+    return error;
+  }
+}
+

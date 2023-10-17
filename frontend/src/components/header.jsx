@@ -1,7 +1,9 @@
-import '../styles/header.css';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import '../styles/header.css';
 
 const Header = () => {
+  const [imgPlayer, setImgPlayer] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDKNFoKUmGW_iMp7ev7WAn_dO-fuXza84XoVmaBU5fdNioD7_5MXxR7aBzj7YNt1fzacs&usqp=CAU')
   const router = useRouter();
 
   const getLogout = () => {
@@ -10,6 +12,10 @@ const Header = () => {
       localStorage.removeItem("user_id");
       router.push('/');
     }
+  }
+
+  const getInfoPlayer = () => {
+    
   }
 
   return (
@@ -24,7 +30,7 @@ const Header = () => {
         </nav>
 
         <div id="div-user-header">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDKNFoKUmGW_iMp7ev7WAn_dO-fuXza84XoVmaBU5fdNioD7_5MXxR7aBzj7YNt1fzacs&usqp=CAU" alt="imagem do usuário" id="img-user"/>
+          <img src={imgPlayer} alt="imagem do usuário" id="img-user"/>
           <p>Username</p>
           <button
             type="text"

@@ -85,7 +85,8 @@ const rankingPlayersByMonth = async (): Promise<IPlayer[]> => {
 
 const playerById = async (id: number): Promise<IPlayer> => {
   const [result] = await connection.execute<ResultSetHeader & IPlayer>(
-    `SELECT * FROM rpsdb_dev.players
+    `SELECT username, image, bio, level, total_points
+    FROM rpsdb_dev.players
     WHERE id = (?);`,
     [id]
   )  
