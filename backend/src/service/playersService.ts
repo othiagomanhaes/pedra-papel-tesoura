@@ -18,6 +18,26 @@ const allPlayers = async () => {
   return allPlayersList;
 }
 
+const rankingPlayers = async () => {
+  const allPlayersRanking = await PlayerModel.rankingPlayers();
+  return allPlayersRanking;
+}
+
+const rankingPlayersByDay = async () => {
+  const allPlayersRankingByDay =  await PlayerModel.rankingPlayersByDay();
+  return allPlayersRankingByDay;
+}
+
+const rankingPlayersByWeek = async () => {
+  const allPlayersRankingByWeek =  await PlayerModel.rankingPlayersByWeek();
+  return allPlayersRankingByWeek;
+}
+
+const rankingPlayersByMonth = async () => {
+  const allPlayersRankingByMonth =  await PlayerModel.rankingPlayersByMonth();
+  return allPlayersRankingByMonth;
+}
+
 const playerById = async (id: number) => {
   const player = await PlayerModel.playerById(id);
   return player;
@@ -52,6 +72,10 @@ const PlayerService = {
   createPlayer,
   login,
   allPlayers,
+  rankingPlayers,
+  rankingPlayersByDay,
+  rankingPlayersByWeek,
+  rankingPlayersByMonth,
   playerById,
   updateEmailById,
   updateUsernameById,

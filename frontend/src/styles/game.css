@@ -3,6 +3,16 @@
   padding: 0;
 }
 
+#main-page {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid blue;
+}
+
+#article-main {
+  width: 100%;
+}
+
 #titulo-choice {
   margin-left: 31%;
 }
@@ -55,6 +65,11 @@
 
 #titulo-rounds {
   margin-left: 35%;
+}
+
+#aside-rankings {
+  border: 1px solid yellow;
+  width: 20%;
 }
 
 #section-game {

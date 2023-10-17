@@ -7,6 +7,10 @@ const { verifyAlreadyPlayerById, verifyEmail, verifyUsername, verifyBio } = midd
 const playerRouter = express.Router();
 
 playerRouter.get('/', PlayerController.allPlayers);
+playerRouter.get('/playerRanking', PlayerController.rankingPlayers);
+playerRouter.get('/playerRankingByDay', PlayerController.rankingPlayersByDay);
+playerRouter.get('/playerRankingByWeek', PlayerController.rankingPlayersByWeek);
+playerRouter.get('/playerRankingByMonth', PlayerController.rankingPlayersByMonth);
 playerRouter.get('/:id', verifyAlreadyPlayerById, PlayerController.playerById);
 playerRouter.get('/statistic/:id', verifyAlreadyPlayerById, PlayerController.statisticPlayerById);
 

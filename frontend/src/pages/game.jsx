@@ -3,6 +3,10 @@ import getTheWinner from '../services/getTheWinner';
 import Header from '../components/header';
 import { createGame } from '../services/api';
 import roundIdObj from '../services/rounds';
+import RankingGeral from '../components/rankingGeral';
+import RankingGeralByDay from '../components/rankingGeralByDay';
+import RankingGeralByWeek from '../components/rankingGeralByWeek';
+import RankingGeralByMonth from '../components/rankingGeralByMonth';
 import '../styles/game.css';
 
 export default function Game() {
@@ -165,147 +169,159 @@ export default function Game() {
     <>
       <Header />
 
-      <h2 id="titulo-choice">Escolha quantas rodadas</h2>
-      <section id="section-rounds">
-        <div id="tabela-points">
-          <h3>Tabela de pontos:</h3>
-          <p>Vitória = 3pts</p>
-          <p>Empate = 1pt</p>
-          <p>Derrota = 0pt</p>
-        </div>
-        <div id="div-mae-rounds">
-          <div id="rounds">
-            <label
-              htmlFor="check5"
-              className="check-rounds"
-              onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
-              id={ cincoChecked ? 'check-cinco' : 'check-cinco-checked'}
-            >
-              5
-            </label>
-            <input 
-              type="checkbox"
-              id="check5" 
-              className="checkbox-rounds"
-            />
+      <main id="main-page">
+        <article id="article-main">
+          <h2 id="titulo-choice">Escolha quantas rodadas</h2>
+            <section id="section-rounds">
+              <div id="tabela-points">
+                <h3>Tabela de pontos:</h3>
+                <p>Vitória = 3pts</p>
+                <p>Empate = 1pt</p>
+                <p>Derrota = 0pt</p>
+              </div>
+              <div id="div-mae-rounds">
+                <div id="rounds">
+                  <label
+                    htmlFor="check5"
+                    className="check-rounds"
+                    onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
+                    id={ cincoChecked ? 'check-cinco' : 'check-cinco-checked'}
+                  >
+                    5
+                  </label>
+                  <input 
+                    type="checkbox"
+                    id="check5" 
+                    className="checkbox-rounds"
+                  />
 
-            <label
-              htmlFor="check10"
-              className="check-rounds"
-              onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
-              id={ dezChecked ? 'check-dez' : 'check-dez-checked'}
-            >
-              10
-            </label>
-            <input
-              type="checkbox"
-              id="check10"
-              className="checkbox-rounds"
-            />
+                  <label
+                    htmlFor="check10"
+                    className="check-rounds"
+                    onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
+                    id={ dezChecked ? 'check-dez' : 'check-dez-checked'}
+                  >
+                    10
+                  </label>
+                  <input
+                    type="checkbox"
+                    id="check10"
+                    className="checkbox-rounds"
+                  />
 
-            <label
-              htmlFor="check15"
-              className="check-rounds"
-              onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
-              id={ quinzeChecked ? 'check-quinze' : 'check-quinze-checked'}
+                  <label
+                    htmlFor="check15"
+                    className="check-rounds"
+                    onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
+                    id={ quinzeChecked ? 'check-quinze' : 'check-quinze-checked'}
+                  >
+                    15
+                  </label>
+                  <input
+                    type="checkbox"
+                    id="check15"
+                    className="checkbox-rounds"
+                  />
+                </div>
+
+                <button
+                  id="btn-rounds"
+                  onClick={ confirmRounds }
+                  disabled={ disabledBtnConfirmar }
+                >
+                  Confirmar
+                </button>
+              </div>
+            </section>      
+
+          <h3 id="titulo-rounds">{`Rodada ${actualRound} de ${rounds}`}</h3>
+          <section id="section-game">
+
+            <div id="results">
+              <h3>Resultados da partida:</h3>
+                {
+                  resultFinal.map((result, ind) => {
+                    return (
+                      <p key={ind}>{result}</p>
+                    )
+                  })
+                } <p>{totalPoints ? `Você fez ${totalPoints} pontos.` : ''}</p>
+              </div>
+
+            <div id="div-mae-choices">
+              <div id="choices">
+                <label
+                  htmlFor="check-pedra"
+                  className="check-choices"
+                  onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                  id={ pedraChecked ? 'check-pedra' : 'check-pedra-checked'}
+                >
+                  Pedra
+                </label>
+                <input
+                  type="checkbox"
+                  id="check-pedra"
+                  className="checkbox-choices"
+                />
+
+                <label
+                  htmlFor="check-papel"
+                  className="check-choices"
+                  onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                  id={ papelChecked ? 'check-papel' : 'check-papel-checked'}
+                >
+                  Papel
+                </label>
+                <input
+                  type="checkbox"
+                  id="check-papel"
+                  className="checkbox-choices"
+                />
+
+                <label
+                  htmlFor="check-tesoura"
+                  className="check-choices"
+                  onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                  value="tesoura"
+                  id={ tesouraChecked ? 'check-tesoura' : 'check-tesoura-checked'}
+                >
+                  Tesoura
+                </label>
+                <input 
+                  type="checkbox"
+                  className="checkbox-choices"
+                />
+              </div>
+
+              <p>{`Resultado da rodada: ${resultRound}`}</p>
+
+              <button
+                type="button"
+                onClick={ makeComputerChoice }
+                disabled={ playerChoice.length === 0 }
+              >
+                Jogar
+              </button>
+            </div>
+          </section>
+          <div>
+            { totalPoints ? <button
+              type="button"
+              onClick={ playAgain }
             >
-              15
-            </label>
-            <input
-              type="checkbox"
-              id="check15"
-              className="checkbox-rounds"
-            />
+              Jogar de Novo
+            </button> : null}
           </div>
+        </article>
 
-          <button
-            id="btn-rounds"
-            onClick={ confirmRounds }
-            disabled={ disabledBtnConfirmar }
-          >
-            Confirmar
-          </button>
-        </div>
-      </section>
+        <aside id="aside-rankings">
+            <RankingGeral />
+            <RankingGeralByDay />
+            <RankingGeralByWeek />
+            <RankingGeralByMonth />
+        </aside>
+      </main>
 
-      <h3 id="titulo-rounds">{`Rodada ${actualRound} de ${rounds}`}</h3>
-      <section id="section-game">
-
-        <div id="results">
-          <h3>Resultados da partida:</h3>
-            {
-              resultFinal.map((result, ind) => {
-                return (
-                  <p key={ind}>{result}</p>
-                )
-              })
-            } <p>{totalPoints ? `Você fez ${totalPoints} pontos.` : ''}</p>
-          </div>
-
-        <div id="div-mae-choices">
-          <div id="choices">
-            <label
-              htmlFor="check-pedra"
-              className="check-choices"
-              onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
-              id={ pedraChecked ? 'check-pedra' : 'check-pedra-checked'}
-            >
-              Pedra
-            </label>
-            <input
-              type="checkbox"
-              id="check-pedra"
-              className="checkbox-choices"
-            />
-
-            <label
-              htmlFor="check-papel"
-              className="check-choices"
-              onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
-              id={ papelChecked ? 'check-papel' : 'check-papel-checked'}
-            >
-              Papel
-            </label>
-            <input
-              type="checkbox"
-              id="check-papel"
-              className="checkbox-choices"
-            />
-
-            <label
-              htmlFor="check-tesoura"
-              className="check-choices"
-              onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
-              value="tesoura"
-              id={ tesouraChecked ? 'check-tesoura' : 'check-tesoura-checked'}
-            >
-              Tesoura
-            </label>
-            <input 
-              type="checkbox"
-              className="checkbox-choices"
-            />
-          </div>
-
-          <p>{`Resultado da rodada: ${resultRound}`}</p>
-
-          <button
-            type="button"
-            onClick={ makeComputerChoice }
-            disabled={ playerChoice.length === 0 }
-          >
-            Jogar
-          </button>
-        </div>
-      </section>
-      <div>
-        { totalPoints ? <button
-          type="button"
-          onClick={ playAgain }
-        >
-          Jogar de Novo
-        </button> : null}
-      </div>
     </>
   )
 }

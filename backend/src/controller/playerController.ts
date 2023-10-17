@@ -33,6 +33,34 @@ const allPlayers = async (_req: Request<ILogin>, res: Response) => {
   }
 }
 
+const rankingPlayers = async (_req: Request<ILogin>, res: Response) => {
+  const allPlayersRanking = await PlayerService.rankingPlayers();
+  if (allPlayersRanking) {
+    return res.status(200).json({ allPlayersRanking });
+  }
+}
+
+const rankingPlayersByDay = async (_req: Request<ILogin>, res: Response) => {
+  const allPlayersRankingByDay = await PlayerService.rankingPlayersByDay();
+  if (allPlayersRankingByDay) {
+    return res.status(200).json({ allPlayersRankingByDay });
+  }
+}
+
+const rankingPlayersByWeek = async (_req: Request<ILogin>, res: Response) => {
+  const allPlayersRankingByWeek = await PlayerService.rankingPlayersByWeek();
+  if (allPlayersRankingByWeek) {
+    return res.status(200).json({ allPlayersRankingByWeek });
+  }
+}
+
+const rankingPlayersByMonth = async (_req: Request<ILogin>, res: Response) => {
+  const allPlayersRankingByMonth = await PlayerService.rankingPlayersByMonth();
+  if (allPlayersRankingByMonth) {
+    return res.status(200).json({ allPlayersRankingByMonth });
+  }
+}
+
 const playerById = async (req: Request<IPlayer>, res: Response) => {
   try {
     const obj = {
@@ -120,6 +148,10 @@ const PlayerController = {
   createPlayer,
   login,
   allPlayers,
+  rankingPlayers,
+  rankingPlayersByDay,
+  rankingPlayersByWeek,
+  rankingPlayersByMonth,
   playerById,
   updateEmailById,
   updateUsernameById,

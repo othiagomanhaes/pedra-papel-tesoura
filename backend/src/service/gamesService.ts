@@ -18,7 +18,7 @@ const createGame = async (game: IGame & IStatisc) => {
   }
 
   await statisticModel.createStatisc(game);
-  await PlayerModel.updatePointsById(username_id, points);
+  await PlayerModel.createPointsById(username_id, points);
   await PlayerModel.updtadeLevelById(username_id);
 }
 
@@ -28,8 +28,8 @@ const getGameByPlayerMonth = async (game: IGame) => {
 }
 
 const getGameByPlayerDay = async (game: IGame) => {
-  const gameMonth = await GamesModel.getGameByPlayerMonth(game);
-  return gameMonth;
+  const gameDay = await GamesModel.getGameByPlayerDay(game);
+  return gameDay;
 }
 
 const getGameByPlayerWeek = async (game: IGame) => {

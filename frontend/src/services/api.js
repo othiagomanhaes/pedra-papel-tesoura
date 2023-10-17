@@ -31,3 +31,39 @@ export const createGame = async ({ username_id, round_id, victory, points, draw,
   }
 }
 
+export const getRankingGeralApi = async () => {
+  try {
+    const { data: { allPlayersRanking }} = await api.get('http://localhost:3006/player/playerRanking');
+    return allPlayersRanking;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const getRankingGeralByDayApi = async () => {
+  try {
+    const { data: { allPlayersRankingByDay }} = await api.get('http://localhost:3006/player/playerRankingByDay');
+    return allPlayersRankingByDay;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const getRankingGeralByWeekApi = async () => {
+  try {
+    const { data: { allPlayersRankingByWeek }} = await api.get('http://localhost:3006/player/playerRankingByWeek');
+    return allPlayersRankingByWeek;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const getRankingGeralByMonthApi = async () => {
+  try {
+    const { data: { allPlayersRankingByMonth }} = await api.get('http://localhost:3006/player/playerRankingByMonth');
+    return allPlayersRankingByMonth;
+  } catch (error) {
+    return error;
+  }
+}
+
