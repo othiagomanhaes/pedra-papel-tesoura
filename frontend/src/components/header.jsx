@@ -1,9 +1,13 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { getPlayerById } from '../services/api';
 import '../styles/header.css';
 
 const Header = () => {
-  const [imgPlayer, setImgPlayer] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDKNFoKUmGW_iMp7ev7WAn_dO-fuXza84XoVmaBU5fdNioD7_5MXxR7aBzj7YNt1fzacs&usqp=CAU')
+  const [imgDefault, setImgDefault] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDKNFoKUmGW_iMp7ev7WAn_dO-fuXza84XoVmaBU5fdNioD7_5MXxR7aBzj7YNt1fzacs&usqp=CAU');
+  const [playerNameDefault, SetPlayerNameDefault] = useState('username');
+  const [imgPlayer, setImgPlayer] = useState('');
+  const [usernamePlayer, setUsernamePlayer] = useState('');
   const router = useRouter();
 
   const getLogout = () => {
@@ -14,9 +18,19 @@ const Header = () => {
     }
   }
 
-  const getInfoPlayer = () => {
-    
+  const getInfoPlayer = async () => {
+    const response = localStorage.getItem('user_id');
+    if (response) {
+      const idPlayer = JSON.parse(response)
+      const player = await getPlayerById(idPlayer);
+      setImgPlayer(player[0].image);
+      setUsernamePlayer(player[0].username);
+    }
   }
+
+  useEffect(() => {
+    getInfoPlayer()
+  }, [])
 
   return (
     <header id="header-game">
@@ -30,8 +44,8 @@ const Header = () => {
         </nav>
 
         <div id="div-user-header">
-          <img src={imgPlayer} alt="imagem do usuário" id="img-user"/>
-          <p>Username</p>
+          <img src={ imgPlayer ? imgPlayer : imgDefault } alt="imagem do usuário" id="img-user"/>
+          <p>{ usernamePlayer ? usernamePlayer : playerNameDefault }</p>
           <button
             type="text"
             onClick={ getLogout }

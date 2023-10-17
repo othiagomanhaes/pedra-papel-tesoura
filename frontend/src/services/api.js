@@ -67,10 +67,10 @@ export const getRankingGeralByMonthApi = async () => {
   }
 }
 
-export const getPlayerById = async () => {
+export const getPlayerById = async (id) => {
   try {
-    const { data: { allPlayersRankingByMonth }} = await api.get('http://localhost:3006/player/playerRankingByMonth');
-    return allPlayersRankingByMonth;
+    const { data: { player }} = await api.get(`http://localhost:3006/player/${id}`);
+    return player;
   } catch (error) {
     return error;
   }
