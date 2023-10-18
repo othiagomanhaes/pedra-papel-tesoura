@@ -26,8 +26,10 @@ const updtaeStatisc = async (statisc: IStatistic) => {
 
 const selecStatisticById = async (username_id: number) => {
   const [result] = await connection.execute(
-    `SELECT * FROM rpsdb_dev.statistic
-    WHERE username_id = ?;`,
+    `SELECT STA.username_id, STA.victory, STA.draw, STA.defeat, STA.matchs, PLA.username, PLA.image, PLA.bio, PLA.level, PLA.total_points 
+    FROM rpsdb_dev.statistic AS STA
+    INNER JOIN rpsdb_dev.players AS PLA ON STA.username_id = PLA.id
+    WHERE STA.username_id = ?;`,
     [username_id]
   )
 

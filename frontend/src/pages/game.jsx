@@ -79,7 +79,6 @@ export default function Game() {
 
     if (resultFinal.length === rounds) {
       setTotalPoints(points);
-      // sendTheResult();
     }
   }
 

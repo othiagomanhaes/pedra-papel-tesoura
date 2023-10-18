@@ -35,11 +35,12 @@ const Header = () => {
   return (
     <header id="header-game">
         <nav id="nav-header">
-          <ul>
-            <li>Jogo</li>
-            <li>Ranking</li>
-            <li>História do Jogo</li>
-            <li>Desenvolvedor</li>
+          <ul id="ul-header">
+            <li className="li-header" onClick={ () => router.push('/game')}>Jogo</li>
+            <li className="li-header" onClick={ () => router.push('/myProfile')}>Meu perfil</li>
+            <li className="li-header">Ranking</li>
+            <li className="li-header">História do Jogo</li>
+            <li className="li-header">Desenvolvedor</li>
           </ul>
         </nav>
 

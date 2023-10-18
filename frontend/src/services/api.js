@@ -76,3 +76,12 @@ export const getPlayerById = async (id) => {
   }
 }
 
+export const getStatisticById = async (id) => {
+  try {
+    const { data: { statiscPlayer }} = await api.get(`http://localhost:3006/player/statistic/${id}`);
+    return statiscPlayer;
+  } catch (error) {
+    return error;
+  }
+}
+

@@ -27,7 +27,7 @@ const RankingGeralByMonth = () => {
 
   return (
     <div className="ranking-geral">
-      <h3>Ranking Geral Do Mês</h3>
+      <h3>Ranking do Mês</h3>
       <table>
         <thead>
           <tr>

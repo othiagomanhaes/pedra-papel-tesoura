@@ -27,7 +27,7 @@ const RankingGeralByDay = () => {
 
   return (
     <div className="ranking-geral">
-      <h3>Ranking Geral Do Dia</h3>
+      <h3>Ranking do Dia</h3>
       <table>
         <thead>
           <tr>
