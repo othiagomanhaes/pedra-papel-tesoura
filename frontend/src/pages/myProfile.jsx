@@ -2,19 +2,18 @@ import { useEffect, useState } from "react"
 import { getStatisticById } from '../services/api';
 import Header from "../components/header";
 import Historic from "../components/historic";
+import Loading from "../components/loading";
 
 export default function MyProfile () {
   const [imgDefault, setImgDefault] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDKNFoKUmGW_iMp7ev7WAn_dO-fuXza84XoVmaBU5fdNioD7_5MXxR7aBzj7YNt1fzacs&usqp=CAU');
-  const [playerNameDefault, SetPlayerNameDefault] = useState('username');
   const [bioDefault, setBioDefault] = useState('Bio');
-  const [idPlayer, setIdPlayer] = useState(0);
+  const [player, setPlayer] = useState();
 
   const getInfoPLayer = async () => {
     const playerId = localStorage.getItem("user_id");
     if (playerId) {
-      const player = await getStatisticById(JSON.parse(playerId));
-      setIdPlayer(JSON.parse(playerId))
-      console.log(player);
+      const playerHistoric = await getStatisticById(JSON.parse(playerId));
+      setPlayer(playerHistoric[0]);
     }
   }
 
@@ -22,16 +21,24 @@ export default function MyProfile () {
     getInfoPLayer();
   },[])
 
+  useEffect(() => {
+  },[player])
+
   return(
     <>
       <Header />
       <h1>Meu Perfil</h1>
       <div>
-        <img src={ imgDefault } alt="" />
-        <p>{ playerNameDefault }</p>
-        <p>{ bioDefault }</p>
+        { player ? 
+        <>
+          <img src={ player.image.length === 0 ? imgDefault : player.image } alt="" />
+          <p>{ player.username }</p>
+          <p>{ player.bio.length === 0 ? bioDefault : player.bio }</p>
+        </>
+         : <Loading />}
+        
       </div>
-      <Historic id={ idPlayer }/>
+      <Historic />
     </>
   )
 }
