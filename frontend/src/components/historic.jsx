@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
-import { getStatisticById } from '../services/api';
+import { getStatisticById, getRankingGeralApi } from '../services/api';
 import Loading from "./loading";
 
 const Historic = () => {
 
   const [player, setPlayer] = useState();
+  const [playerPositionState, setPlayerPositionState] = useState('-');
 
   const getInfoPLayer = async () => {
     const playerId = localStorage.getItem("user_id");
     if (playerId) {
       const playerHistoric = await getStatisticById(JSON.parse(playerId));
       setPlayer(playerHistoric[0]);
-      console.log(playerHistoric);
+
+      const rankingGeral = await getRankingGeralApi();
+      const playerPosition = rankingGeral.forEach((ele, ind) => {
+        if (ele.id === Number(playerId)) {
+          setPlayerPositionState(ind + 1)
+        }
+      })
     }
+
   }
 
   useEffect(() => {
@@ -20,7 +28,7 @@ const Historic = () => {
   },[])
 
   useEffect(() => {
-  },[player])
+  },[player, playerPositionState])
 
   return(
     <>
@@ -44,12 +52,13 @@ const Historic = () => {
             <tbody>
               <tr>
                 <td>{player.matchs}</td>
-                <td>mexer no back</td>
+                <td>{player.rounds}</td>
                 <td>{player.victory}</td>
                 <td>{player.draw}</td>
                 <td>{player.defeat}</td>
                 <td>{player.level}</td>
                 <td>{player.total_points}</td>
+                <td>{playerPositionState}º</td>
               </tr>
             </tbody>
 
