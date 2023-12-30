@@ -38,7 +38,7 @@ const rankingPlayers = async (): Promise<IPlayer[]> => {
   const [result] = await connection.execute<RowDataPacket[] & IPlayer[]>(
     `SELECT id, username, level, total_points
     FROM rpsdb_dev.players
-    ORDER BY level, total_points DESC;`
+    ORDER BY level DESC, total_points DESC;`
   )
 
   return result;

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import getTheWinner from '../services/getTheWinner';
 import Header from '../components/header';
 import { createGame } from '../services/api';
-import roundIdObj from '../services/rounds';
+import {roundIdObj,roundKey } from '../services/rounds';
 import RankingGeral from '../components/rankingGeral';
 import RankingGeralByDay from '../components/rankingGeralByDay';
 import RankingGeralByWeek from '../components/rankingGeralByWeek';
@@ -114,23 +114,23 @@ export default function Game() {
   }
 
   const gettinRoundsQuantity = ({ target }) => {
-    const value = target.innerHTML;
-    setRounds(Number(value));
+    const value = target.id.split('-')[1];
+    setRounds(Number(roundKey[value]));
     setActualRound(1);
     setDisabledBtnConfirmar(false)
-    if (value === '5') {
+    if (value === 'cinco') {
       setCincoChecked(false);
       setDezChecked(true);
       setQuinzeChecked(true);
     }
 
-    if (value === '10') {
+    if (value === 'dez') {
       setCincoChecked(true);
       setDezChecked(false);
       setQuinzeChecked(true);
     }
 
-    if (value === '15') {
+    if (value === 'quinze') {
       setCincoChecked(true);
       setDezChecked(true);
       setQuinzeChecked(false);
@@ -183,11 +183,10 @@ export default function Game() {
                   <label
                     htmlFor="check5"
                     className="check-rounds"
+                    name="5"
                     onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
                     id={ cincoChecked ? 'check-cinco' : 'check-cinco-checked'}
-                  >
-                    5
-                  </label>
+                  />
                   <input 
                     type="checkbox"
                     id="check5" 
@@ -199,9 +198,7 @@ export default function Game() {
                     className="check-rounds"
                     onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
                     id={ dezChecked ? 'check-dez' : 'check-dez-checked'}
-                  >
-                    10
-                  </label>
+                  />
                   <input
                     type="checkbox"
                     id="check10"
@@ -213,9 +210,7 @@ export default function Game() {
                     className="check-rounds"
                     onClick={ disabledChoiceRounds ? gettinRoundsQuantity : null }
                     id={ quinzeChecked ? 'check-quinze' : 'check-quinze-checked'}
-                  >
-                    15
-                  </label>
+                  />
                   <input
                     type="checkbox"
                     id="check15"
