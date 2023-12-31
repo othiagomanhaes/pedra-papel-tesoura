@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import getTheWinner from '../services/getTheWinner';
 import Header from '../components/header';
 import { createGame } from '../services/api';
@@ -7,6 +8,7 @@ import RankingGeral from '../components/rankingGeral';
 import RankingGeralByDay from '../components/rankingGeralByDay';
 import RankingGeralByWeek from '../components/rankingGeralByWeek';
 import RankingGeralByMonth from '../components/rankingGeralByMonth';
+import Chars from '../services/getChars';
 import '../styles/game.css';
 
 export default function Game() {
@@ -138,21 +140,22 @@ export default function Game() {
   }
 
   const gettinPlayerChoice = ({ target }) => {
-    const value = target.innerHTML;
-    setPlayerChoice(value.toLowerCase());
-    if (value === 'Tesoura') {
+    const value = target.alt.split(' ')[2];
+    console.log(value);
+    setPlayerChoice(value);
+    if (value === 'tesoura') {
       setTesouraChecked(false);
       setPedraChecked(true);
       setPapelChecked(true)
     }
 
-    if (value === 'Pedra') {
+    if (value === 'pedra') {
       setPedraChecked(false);
       setTesouraChecked(true);
       setPapelChecked(true)
     }
 
-    if (value === 'Papel') {
+    if (value === 'papel') {
       setPapelChecked(false);
       setPedraChecked(true);
       setTesouraChecked(true)
@@ -250,13 +253,19 @@ export default function Game() {
                   onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
                   id={ pedraChecked ? 'check-pedra' : 'check-pedra-checked'}
                 >
-                  Pedra
+                  <Image
+                    src={ Chars.pedra }
+                    alt='personagem de pedra'
+                    className='img-choices'
+                  />
                 </label>
                 <input
                   type="checkbox"
                   id="check-pedra"
                   className="checkbox-choices"
-                />
+                >
+                  
+                </input>
 
                 <label
                   htmlFor="check-papel"
@@ -264,7 +273,11 @@ export default function Game() {
                   onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
                   id={ papelChecked ? 'check-papel' : 'check-papel-checked'}
                 >
-                  Papel
+                  <Image 
+                    src={ Chars.papel } 
+                    alt='personagem de papel'
+                    className='img-choices'
+                  />
                 </label>
                 <input
                   type="checkbox"
@@ -279,7 +292,11 @@ export default function Game() {
                   value="tesoura"
                   id={ tesouraChecked ? 'check-tesoura' : 'check-tesoura-checked'}
                 >
-                  Tesoura
+                  <Image 
+                    src={ Chars.tesoura } 
+                    alt='personagem de tesoura'
+                    className='img-choices'
+                  />
                 </label>
                 <input 
                   type="checkbox"
