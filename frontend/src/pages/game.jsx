@@ -9,6 +9,7 @@ import RankingGeralByDay from '../components/rankingGeralByDay';
 import RankingGeralByWeek from '../components/rankingGeralByWeek';
 import RankingGeralByMonth from '../components/rankingGeralByMonth';
 import Chars from '../services/getChars';
+import { revalidatePath } from 'next/cache'
 import '../styles/game.css';
 
 export default function Game() {
@@ -28,6 +29,7 @@ export default function Game() {
   const [disabledBtnConfirmar, setDisabledBtnConfirmar] = useState(true);
   const [disabledElementsChoice, setDisabledElementsChoice] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
+  const [rankingsInvalidationKey, setRankingsInvalidationKey] = useState(0);
   
   const playAgain = () => {
     setRounds(0);
@@ -40,6 +42,7 @@ export default function Game() {
     setQuinzeChecked(true);
     setDisabledChoiceRounds(true);
     setDisabledElementsChoice(true);
+    setRankingsInvalidationKey(rankingsInvalidationKey + 1)
   }
 
   const getUserId = () => {
@@ -328,14 +331,14 @@ export default function Game() {
           </div>
         </article>
 
-        <aside id="aside-rankings">
+        <aside id="aside-rankings" key={rankingsInvalidationKey}>
             <RankingGeral />
             <RankingGeralByDay />
             <RankingGeralByWeek />
             <RankingGeralByMonth />
         </aside>
       </main>
-
     </>
   )
 }
+

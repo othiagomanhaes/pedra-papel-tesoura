@@ -55,4 +55,5 @@ const RankingGeralByDay = () => {
   )
 }
 
+
 export default RankingGeralByDay;
