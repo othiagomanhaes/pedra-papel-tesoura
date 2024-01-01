@@ -38,7 +38,8 @@ export default function Game() {
     setCincoChecked(true);
     setDezChecked(true);
     setQuinzeChecked(true);
-    setDisabledChoiceRounds(true)
+    setDisabledChoiceRounds(true);
+    setDisabledElementsChoice(true);
   }
 
   const getUserId = () => {
@@ -90,6 +91,7 @@ export default function Game() {
     } else {
       setPlayerChoice('');
       setComputerChoice('');
+      setDisabledElementsChoice(false);
     }   
   }
 
@@ -310,6 +312,7 @@ export default function Game() {
                 type="button"
                 onClick={ makeComputerChoice }
                 disabled={ playerChoice.length === 0 }
+                id="btn-jogar"
               >
                 Jogar
               </button>
