@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+body {
+    background-color: rgb(173, 145, 102);
+    /* background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Barbarians-reputation.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+#div-titulos {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(114, 92, 60);
+    align-items: center;
+    height: 130px;
+}
+
+#main-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    /* border: 1px solid red; */
+    /* height: 100vh; */
+}
+
+#img-jokenpo {
+  width: 35%;
+  height: 55%;
+}
+
+#div-mae-loginRegister{
+  border: 1px solid rgb(173, 145, 102);
+  width: 50%;
+  border-radius: 12px;
+  /* background-color: rgb(173, 149, 113); */
+  /* background-color: rgba(255, 255, 255, 0.3); */
+}
+
+#h1-loginRegister {
+    text-align: center;
+    margin: 3% auto 3%;
+}
+
+#div-loginRegister {
+    margin: 3% auto;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#btn-loginRegister {
+  background-color: rgb(112, 24, 24);
+  border: none;
+  color: white;
+  width: 25%;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 10px;
+  cursor: pointer;
+}

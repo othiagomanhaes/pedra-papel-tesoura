@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getLogin } from '../services/api';
+import "../styles/login.css";
 
 export default function Login() {
   const [isDisabled, setDisabled] = useState(true);
@@ -41,37 +42,49 @@ export default function Login() {
   }, [email, username])
 
   return (
-    <>
-      <h3>Login</h3>
-      <form action="">
-        <label htmlFor="username-user">Usuário</label>
+    <div id="div-login">
+      <h3 id="h3-login">Login</h3>
+      <form 
+        action=""
+        id="form-login"
+      >
+        <label 
+          htmlFor="username-user"
+        >
+        </label>
         <input
           type="text"
           id="username-user"
+          className="input-login"
           value={ username }
           name="username"
           onChange={ controlGeneralState }
-          placeholder="nome de usuário"
+          placeholder="Nome de usuário"
         />
 
-        <label htmlFor="email-user">Email</label>
+        <label 
+          htmlFor="email-user"
+        >
+        </label>
         <input
           type="email"
           id="email-user"
+          className="input-login"
           value={ email }
           name="email"
           onChange={ controlGeneralState }
-          placeholder="seu email"
+          placeholder="Seu email"
         />
         <p>{ notFoundUser ? notFoundUser : ''}</p>
         <button
           type="button"
           disabled={ isDisabled }
           onClick={ makeLogin }
+          id="btn-entrar"
         >
           Entrar
         </button>
       </form>
-    </>
+    </div>
   )
 }

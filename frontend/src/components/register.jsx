@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 import { getRegister } from '../services/api';
+import "../styles/register.css";
 
 
 export default function Register() {
@@ -42,37 +43,43 @@ export default function Register() {
   }, [email, username])
 
     return (
-      <>
-        <h3>Register</h3>
-        <form action="">
-        <label htmlFor="username-user">Usuário</label>
-        <input
-          type="text"
-          id="username-user"
-          value={ username }
-          name="username"
-          onChange={ controlGeneralState }
-          placeholder="nome de usuário"
-        />
-
-        <label htmlFor="email-user">Email</label>
-        <input
-          type="email"
-          id="email-user"
-          value={ email }
-          name="email"
-          onChange={ controlGeneralState }
-          placeholder="seu email"
-        />
-        <p>{ alreadyPlayer ? alreadyPlayer : '' }</p>
-        <button
-          type="button"
-          disabled={ isDisabled }
-          onClick={ makeRegister }
+      <div id="div-register">
+        <h3 id="h3-login">Registro</h3>
+        <form 
+          action=""
+          id="form-register"
         >
-          Cadastrar
-        </button>
-      </form>
-      </>
+          <label htmlFor="username-user"></label>
+          <input
+            type="text"
+            id="username-user"
+            className="input-register"
+            value={ username }
+            name="username"
+            onChange={ controlGeneralState }
+            placeholder="Nome de usuário"
+          />
+
+          <label htmlFor="email-user"></label>
+          <input
+            type="email"
+            id="email-user"
+            className="input-register"
+            value={ email }
+            name="email"
+            onChange={ controlGeneralState }
+            placeholder="Seu email"
+          />
+          <p>{ alreadyPlayer ? alreadyPlayer : '' }</p>
+          <button
+            type="button"
+            disabled={ isDisabled }
+            onClick={ makeRegister }
+            id="btn-register"
+          >
+            Cadastrar
+          </button>
+        </form>
+      </div>
     )
   }
