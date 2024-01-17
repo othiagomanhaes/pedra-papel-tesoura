@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <div>
       <div id="div-titulos">
-        <h1>Pedra, Papel e Tesoura</h1>
-        <h1>Jokenpo</h1>
-        <h1>Rock, Paper and Scissor</h1>
+        <h1 id="title-pt">Pedra, Papel e Tesoura</h1>
+        <h1 id="title-ko">Jokenpo</h1>
+        <h1 id="title-en">Rock, Paper and Scissor</h1>
       </div>
         <h1 id="h1-loginRegister">{"Você não precisa de senha, apenas um usuário e email :)"}</h1>
       <div id="main-div">
@@ -27,7 +27,7 @@ export default function Home() {
               id="btn-loginRegister"
               onClick={ () => { setIsLogin(!isLogin) } }
             >
-              { isLogin ? 'Vá para Registro' : 'Vá para Login' }
+              { isLogin ? 'Não tenho Cadastro' : 'Vá para Login' }
             </button>
             { isLogin ? <Login /> : <Register /> }
           </div>

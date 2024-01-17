@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bebas+Neue&family=Holtwood+One+SC&family=Josefin+Sans&family=Lemon&family=Space+Grotesk&family=Vast+Shadow&display=swap');
+/* font-family: 'Bebas Neue', sans-serif;
+font-family: 'Holtwood One SC', serif;
+font-family: 'Lemon', serif;
+font-family: 'Space Grotesk', sans-serif;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Arvo', serif;
+font-family: 'Vast Shadow', serif; */
 
 * {
   margin: 0;
@@ -14,12 +22,17 @@
   align-items: center;
   height: 85%;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgb(201, 175, 137);
 }
 
 #h3-login {
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: bolder;
   margin-top: 3%;
+  font-family: 'Holtwood One SC', serif;
+  color: black;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #ffffff;
 }
 
 #form-login {
@@ -41,7 +54,9 @@
   color: black;
   font-weight: 800;
   width: 85%;
-  background-color: rgba(173, 145, 102, 0);
+  background-color: rgb(201, 175, 137);
+  font-family: 'Holtwood One SC', serif;
+  font-size: 20px;
 }
 
 .input-login:focus{
@@ -51,26 +66,33 @@
 }
 
 .input-login::placeholder {
-  color: rgb(22, 22, 22);
+  color: rgb(87, 84, 84);
 }
 
 .input-login:-webkit-autofill {
-  background-color: rgb(173, 145, 102);
+  /* -webkit-box-shadow: rgb(173, 145, 102); */
+  -webkit-box-shadow: 0 0 0 30px rgb(201, 175, 137) inset;
 }
+
 
 #btn-entrar {
   height: 60px;
   width: 70%;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 800;
-  background-color: rgb(88, 238, 88);
+  background-color: rgb(236, 157, 66);
   border: none;
+  font-family: 'Holtwood One SC', serif;
+  font-family: 'Arvo', serif;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #ffffff;
+  cursor: pointer;
 }
 
 #btn-entrar:disabled {
   cursor: not-allowed;
-  background-color: rgb(180, 231, 180);
+  background-color: rgb(236, 194, 146);
 }
   
 

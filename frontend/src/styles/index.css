@@ -1,31 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bebas+Neue&family=Holtwood+One+SC&family=Josefin+Sans&family=Lemon&family=Space+Grotesk&family=Vast+Shadow&display=swap');
+
+
+/* font-family: 'Bebas Neue', sans-serif;
+font-family: 'Holtwood One SC', serif;
+font-family: 'Lemon', serif;
+font-family: 'Space Grotesk', sans-serif;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Arvo', serif;
+font-family: 'Vast Shadow', serif; */
+
 * {
-    margin: 0;
-    padding: 0;
-    
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: rgb(173, 145, 102);
-    /* background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Barbarians-reputation.jpg");
-    background-repeat: no-repeat;
-    background-size: cover; */
+  background-color: rgb(173, 145, 102);
+  /* background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Barbarians-reputation.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
 #div-titulos {
-    display: flex;
-    justify-content: space-around;
-    background-color: rgb(114, 92, 60);
-    align-items: center;
-    height: 130px;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(114, 92, 60);
+  color: white;
+  align-items: center;
+  height: 130px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #000000;
+}
+
+#title-pt {
+  font-family: 'Holtwood One SC', serif
+}
+
+#title-ko {
+  font-family: 'Lemon', serif;
+  color: black;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #ffffff;
+}
+
+#title-en {
+  font-family: 'Holtwood One SC', serif
 }
 
 #main-div {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: auto;
-    /* border: 1px solid red; */
-    /* height: 100vh; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  /* border: 1px solid red; */
+  /* height: 100vh; */
 }
 
 #img-jokenpo {
@@ -42,32 +70,45 @@ body {
 }
 
 #h1-loginRegister {
-    text-align: center;
-    margin: 3% auto 3%;
+  text-align: center;
+  margin: 1% auto 0 auto;
+  font-family: 'Arvo', serif;
+  /* text-decoration: underline; */
+  /* color: rgb(114, 92, 60); */
+  color: black;
+  /* -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #ffffff; */
+  font-size: 35px;
+  font-weight: bolder;
+  width: 65%;
 }
 
 #div-loginRegister {
-    margin: 3% auto;
-    /* border: 1px solid red; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 85%;
-    height: 450px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  margin: 3% auto;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 #btn-loginRegister {
   background-color: rgb(112, 24, 24);
   border: none;
   color: white;
-  width: 25%;
-  height: 40px;
-  font-size: 16px;
+  width: 47%;
+  height: 50px;
+  font-size: 27px;
   font-weight: 800;
   border-radius: 10px;
   cursor: pointer;
+  font-family: 'Arvo', serif;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000000;
+  margin-bottom: 2%;
 }
