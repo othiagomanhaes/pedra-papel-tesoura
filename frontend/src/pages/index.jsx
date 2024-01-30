@@ -14,7 +14,7 @@ export default function Home() {
         <h1 id="title-ko">Jokenpo</h1>
         <h1 id="title-en">Rock, Paper and Scissor</h1>
       </div>
-        <h1 id="h1-loginRegister">{"Você não precisa de senha, apenas um usuário e email :)"}</h1>
+        <h1 id="h1-loginRegister">Você não precisa de senha, apenas um <span className="span-h1">usuário</span> e <span className="span-h1">email</span>!!</h1>
       <div id="main-div">
         <Image 
           src={ jokenpo }
@@ -23,13 +23,13 @@ export default function Home() {
         />
         <div id="div-mae-loginRegister">
           <div id="div-loginRegister">
+            { isLogin ? <Login /> : <Register /> }
             <button
               id="btn-loginRegister"
               onClick={ () => { setIsLogin(!isLogin) } }
             >
-              { isLogin ? 'Não tenho Cadastro' : 'Vá para Login' }
+              { isLogin ? 'Primeiro Cadastro' : 'Vá para Login' }
             </button>
-            { isLogin ? <Login /> : <Register /> }
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ export default function Register() {
 
     return (
       <div id="div-register">
-        <h3 id="h3-login">Registro</h3>
+        {/* <h3 id="h3-login">Registro</h3> */}
         <form 
           action=""
           id="form-register"
@@ -58,6 +58,8 @@ export default function Register() {
             name="username"
             onChange={ controlGeneralState }
             placeholder="Nome de usuário"
+            autoComplete='off'
+
           />
 
           <label htmlFor="email-user"></label>
@@ -69,6 +71,7 @@ export default function Register() {
             name="email"
             onChange={ controlGeneralState }
             placeholder="Seu email"
+            autoComplete='off'
           />
           <p>{ alreadyPlayer ? alreadyPlayer : '' }</p>
           <button

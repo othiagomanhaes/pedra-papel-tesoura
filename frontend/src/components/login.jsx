@@ -43,7 +43,7 @@ export default function Login() {
 
   return (
     <div id="div-login">
-      <h3 id="h3-login">Login</h3>
+      {/* <h3 id="h3-login">Login</h3> */}
       <form 
         action=""
         id="form-login"
@@ -60,6 +60,7 @@ export default function Login() {
           name="username"
           onChange={ controlGeneralState }
           placeholder="Nome de usuário"
+          autoComplete='off'
         />
 
         <label 
@@ -74,6 +75,7 @@ export default function Login() {
           name="email"
           onChange={ controlGeneralState }
           placeholder="Seu email"
+          autoComplete='off'
         />
         <p>{ notFoundUser ? notFoundUser : ''}</p>
         <button

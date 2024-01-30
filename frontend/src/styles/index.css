@@ -19,12 +19,17 @@ body {
   /* background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Barbarians-reputation.jpg");
   background-repeat: no-repeat;
   background-size: cover; */
+  background-image: url("../imgs/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 #div-titulos {
   display: flex;
   justify-content: space-around;
   background-color: rgb(114, 92, 60);
+  background: radial-gradient(circle, rgb(184, 142, 79), rgb(97, 77, 46));
   color: white;
   align-items: center;
   height: 130px;
@@ -49,22 +54,29 @@ body {
 
 #main-div {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   margin: auto;
+  position: relative;
   /* border: 1px solid red; */
   /* height: 100vh; */
 }
 
 #img-jokenpo {
-  width: 35%;
-  height: 55%;
+  width: 15%;
+  height: 15%;
+  z-index: 1;
 }
 
 #div-mae-loginRegister{
-  border: 1px solid rgb(173, 145, 102);
-  width: 50%;
-  border-radius: 12px;
+  border: 1px solid rgba(115, 92, 60, 0.6);
+  width: 35%;
+  height: 500px;
+  border-radius: 50%;
+  background-color: rgba(115, 92, 60, 0.6);
+  position: relative;
+  margin-top: -120px;
   /* background-color: rgb(173, 149, 113); */
   /* background-color: rgba(255, 255, 255, 0.3); */
 }
@@ -75,12 +87,16 @@ body {
   font-family: 'Arvo', serif;
   /* text-decoration: underline; */
   /* color: rgb(114, 92, 60); */
-  color: black;
+  color: white;
   /* -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #ffffff; */
   font-size: 35px;
   font-weight: bolder;
   width: 65%;
+}
+
+.span-h1 {
+  color: #f7b751;
 }
 
 #div-loginRegister {
@@ -101,14 +117,15 @@ body {
   background-color: rgb(112, 24, 24);
   border: none;
   color: white;
-  width: 47%;
-  height: 50px;
-  font-size: 27px;
+  width: 51%;
+  height: 30px;
+  font-size: 19px;
   font-weight: 800;
-  border-radius: 10px;
+  border-radius: 15px;
   cursor: pointer;
-  font-family: 'Arvo', serif;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #000000;
+  font-family: 'Space Grotesk', sans-serif;
+  /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000000; */
   margin-bottom: 2%;
+  margin-top: -60px;
 }

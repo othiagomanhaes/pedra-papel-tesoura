@@ -14,15 +14,14 @@ font-family: 'Vast Shadow', serif; */
 }
 
 #div-login {
-  border: 1px solid rgb(173, 145, 102);
+  /* border: 1px solid rgb(115, 92, 60); */
   width: 85%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 85%;
-  border-radius: 10px;
-  background-color: rgb(201, 175, 137);
+  height: 100%;
+  border-radius: 50%;
 }
 
 #h3-login {
@@ -48,30 +47,36 @@ font-family: 'Vast Shadow', serif; */
 
 .input-login {
   height: 35px;
-  border-right: none;
+  /* border-right: none;
   border-top: none;
-  border-left: none;
-  color: black;
+  border-left: none; */
+  color: rgba(115, 92, 60);
+  border-radius: 19px;
+  border: 3px solid rgba(115, 92, 60);
   font-weight: 800;
   width: 85%;
-  background-color: rgb(201, 175, 137);
-  font-family: 'Holtwood One SC', serif;
+  background-color: white;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 20px;
+  padding: 3px;
 }
 
-.input-login:focus{
+.input-login:focus, .input-login:valid{
   box-shadow: 0 0 0 0;
   border: 0 0 1 0;
   outline: 0;
 }
 
 .input-login::placeholder {
-  color: rgb(87, 84, 84);
+  color: rgba(115, 92, 60, 0.6);
 }
 
-.input-login:-webkit-autofill {
-  /* -webkit-box-shadow: rgb(173, 145, 102); */
-  -webkit-box-shadow: 0 0 0 30px rgb(201, 175, 137) inset;
+.input-login:-webkit-autofill,
+.input-login:-webkit-autofill:focus,
+.input-login:-webkit-autofill:valid {
+  -webkit-box-shadow: 0 0 0 1000px white inset; /* Adiciona uma sombra para cobrir o autofill */
+  color: rgba(115, 92, 60);
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 
