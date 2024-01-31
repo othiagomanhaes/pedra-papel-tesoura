@@ -40,7 +40,7 @@ font-family: 'Vast Shadow', serif; */
   justify-content: space-around;
   align-items: center;
   width: 85%;
-  height: 65%;
+  height: 50%;
   margin: auto;
   /* border: 1px solid green; */
 }
@@ -88,7 +88,7 @@ font-family: 'Vast Shadow', serif; */
   font-weight: 800;
   background-color: rgb(236, 157, 66);
   border: none;
-  font-family: 'Holtwood One SC', serif;
+  /* font-family: 'Holtwood One SC', serif; */
   font-family: 'Arvo', serif;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #ffffff;
@@ -100,5 +100,26 @@ font-family: 'Vast Shadow', serif; */
   background-color: rgb(236, 194, 146);
 }
   
+@media screen and (max-width: 600px) {
+  #div-login {
+    width: 100%;
+  }
 
+  #h3-login {
+    font-size: 30px;
+    margin-top: 2%;
+  }
+
+  #form-login {
+    width: 100%;
+  }
+
+  .input-login {
+    width: 100%;
+  }
+
+  #btn-entrar {
+    width: 100%;
+  }
+}
   
