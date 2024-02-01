@@ -14,7 +14,7 @@ export default function Home() {
         <h1 id="title-ko">Jokenpo</h1>
         <h1 id="title-en">Rock, Paper and Scissor</h1>
       </div>
-        <h1 id="h1-loginRegister">Você não precisa de senha, apenas um <span className="span-h1">usuário</span> e <span className="span-h1">email</span>!!</h1>
+      <h1 id="h1-loginRegister">Você não precisa de senha, apenas um <span className="span-h1">usuário</span> e <span className="span-h1">email</span>!!</h1>
       <div id="main-div">
         <Image 
           src={ jokenpo }

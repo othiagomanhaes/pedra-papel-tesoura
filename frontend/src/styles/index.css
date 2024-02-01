@@ -130,37 +130,46 @@ body {
   margin-top: -90px;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 380px) {
+
+  body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #div-titulos {
+    height: 180px;
+    flex-direction: column;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+  }
+  #title-pt, #title-ko, #title-en {
+    font-size: 19px;
+  }
+
+  #h1-loginRegister {
+    font-size: 16px;
+  }
+
+  #img-jokenpo {
+    width: 45%;
+  }
+
   #div-mae-loginRegister {
+    height: 50%;
+    width: 85%;
+    margin-top: -100px;
+  }
+
+  #div-loginRegister {
+    height: 340px;
+  }
+
+  #btn-loginRegister {
     width: 60%;
-    margin-top: -80px; /* Ajuste conforme necessário */
+    height: 13%;
+    font-size: 16px;
   }
 
-  #h1-loginRegister {
-    width: 80%;
-    font-size: 28px;
-  }
-
-  #img-jokenpo {
-    width: 10%;
-    height: 10%;
-  }
-}
-
-/* Media query para telas menores */
-@media screen and (max-width: 480px) {
-  #div-mae-loginRegister {
-    width: 80%;
-    margin-top: -60px; /* Ajuste conforme necessário */
-  }
-
-  #h1-loginRegister {
-    width: 90%;
-    font-size: 24px;
-  }
-
-  #img-jokenpo {
-    width: 8%;
-    height: 8%;
-  }
 }
