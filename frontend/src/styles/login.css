@@ -95,6 +95,70 @@ font-family: 'Vast Shadow', serif; */
   cursor: pointer;
 }
 
+@media (max-width: 1115px) {
+  #div-login {
+    height: 70%;
+  }
+
+  .input-login {
+    height: 25px;
+    font-size: 15px;
+  }
+
+  .input-login::placeholder {
+    color: rgba(56, 40, 17, 0.6);
+  }
+
+  #btn-entrar {
+    height: 25%;
+    width: 75%;
+    font-size: 15px;
+    color: rgba(56, 40, 17, 0.6);
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+
+  #btn-entrar:disabled {
+    cursor: not-allowed;
+    background-color: rgb(236, 194, 146);
+    color: rgba(95, 80, 60, 0.6);
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+}
+
+@media (max-width: 700px) {
+  #div-login {
+    height: 70%;
+  }
+
+  .input-login {
+    height: 15px;
+    font-size: 15px;
+  }
+
+  .input-login::placeholder {
+    color: rgba(56, 40, 17, 0.6);
+  }
+
+  #btn-entrar {
+    height: 18%;
+    width: 75%;
+    font-size: 15px;
+    color: rgba(56, 40, 17, 0.6);
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+
+  #btn-entrar:disabled {
+    cursor: not-allowed;
+    background-color: rgb(236, 194, 146);
+    color: rgba(95, 80, 60, 0.6);
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+}
+
 #btn-entrar:disabled {
   cursor: not-allowed;
   background-color: rgb(236, 194, 146);

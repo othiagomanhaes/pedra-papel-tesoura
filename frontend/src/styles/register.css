@@ -100,6 +100,71 @@ font-family: 'Vast Shadow', serif; */
   background-color: rgb(236, 194, 146);
 }
 
+@media (max-width: 1115px) {
+  #div-register {
+    height: 70%;
+  }
+
+  .input-register {
+    height: 12px;
+    font-size: 12px;
+  }
+
+  .input-register::placeholder {
+    color: rgba(56, 40, 17, 0.6);
+  }
+
+  #btn-register {
+    height: 18%;
+    width: 75%;
+    font-size: 15px;
+    color: rgba(56, 40, 17, 0.6);
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+
+  #btn-register:disabled {
+    cursor: not-allowed;
+    background-color: rgb(236, 194, 146);
+    /* background-color: rgb(58, 168, 25); */
+    color: rgba(95, 80, 60, 0.6);
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+}
+
+@media (max-width: 700px) {
+  #div-register {
+    height: 70%;
+  }
+
+  .input-register {
+    height: 12px;
+    font-size: 12px;
+  }
+
+  .input-register::placeholder {
+    color: rgba(56, 40, 17, 0.6);
+  }
+
+  #btn-register {
+    height: 18%;
+    width: 75%;
+    font-size: 15px;
+    color: rgba(56, 40, 17, 0.6);
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+
+  #btn-register:disabled {
+    cursor: not-allowed;
+    background-color: rgb(236, 194, 146);
+    /* background-color: rgb(58, 168, 25); */
+    color: rgba(95, 80, 60, 0.6);
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+}
 
 @media (max-width: 380px) {
   #div-register {

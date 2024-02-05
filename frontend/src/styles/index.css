@@ -130,6 +130,90 @@ body {
   margin-top: -90px;
 }
 
+@media (max-width: 1115px) {
+  body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #div-titulos {
+    height: 180px;
+    flex-direction: column;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+  }
+  #title-pt, #title-ko, #title-en {
+    font-size: 35px;
+  }
+
+  #h1-loginRegister {
+    font-size: 25px;
+  }
+
+  #img-jokenpo {
+    width: 35%;
+  }
+
+  #div-mae-loginRegister {
+    height: 65%;
+    width: 65%;
+    margin-top: -100px;
+  }
+
+  #div-loginRegister {
+    height: 340px;
+  }
+
+  #btn-loginRegister {
+    width: 60%;
+    height: 13%;
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 700px) { 
+  body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #div-titulos {
+    height: 180px;
+    flex-direction: column;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+  }
+  #title-pt, #title-ko, #title-en {
+    font-size: 23px;
+  }
+
+  #h1-loginRegister {
+    font-size: 20px;
+  }
+
+  #img-jokenpo {
+    width: 45%;
+  }
+
+  #div-mae-loginRegister {
+    height: 55%;
+    width: 75%;
+    margin-top: -100px;
+  }
+
+  #div-loginRegister {
+    height: 340px;
+  }
+
+  #btn-loginRegister {
+    width: 60%;
+    height: 13%;
+    font-size: 19px;
+  }
+}
+
 @media (max-width: 380px) {
 
   body {
