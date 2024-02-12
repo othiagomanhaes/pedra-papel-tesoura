@@ -41,7 +41,7 @@ export default function Game() {
     setDezChecked(true);
     setQuinzeChecked(true);
     setDisabledChoiceRounds(true);
-    setDisabledElementsChoice(true);
+    setDisabledElementsChoice(false);
     setRankingsInvalidationKey(rankingsInvalidationKey + 1)
   }
 
@@ -177,15 +177,10 @@ export default function Game() {
       <Header />
 
       <main id="main-page">
+          
         <article id="article-main">
-          <h2 id="titulo-choice">Escolha quantas rodadas</h2>
-            <section id="section-rounds">
-              <div id="tabela-points">
-                <h3>Tabela de pontos:</h3>
-                <p>Vitória = 3pts</p>
-                <p>Empate = 1pt</p>
-                <p>Derrota = 0pt</p>
-              </div>
+          <section id="section-rounds">
+            <h2 id="titulo-choice">Escolha quantas rodadas</h2>
               <div id="div-mae-rounds">
                 <div id="rounds">
                   <label
@@ -234,21 +229,38 @@ export default function Game() {
                   Confirmar
                 </button>
               </div>
-            </section>      
 
-          <h3 id="titulo-rounds">{`Rodada ${actualRound} de ${rounds}`}</h3>
+              <div id="tabela-points">
+                  <h3>Tabela de pontos:</h3>
+                  <p>Vitória = 3pts</p>
+                  <p>Empate = 1pt</p>
+                  <p>Derrota = 0pt</p>
+                </div>
+            </section>  
+
           <section id="section-game">
+            <h3 id="titulo-rounds">{`Rodada ${actualRound} de ${rounds}`}</h3>
 
             <div id="results">
               <h3>Resultados da partida:</h3>
                 {
                   resultFinal.map((result, ind) => {
                     return (
-                      <p key={ind}>{result}</p>
+                      <span key={ind}>{`${result} - `}</span>
                     )
                   })
                 } <p>{totalPoints ? `Você fez ${totalPoints} pontos.` : ''}</p>
-              </div>
+            </div>
+
+            <div id="div-btn-play-again">
+              { totalPoints ? <button
+                type="button"
+                onClick={ playAgain }
+                id = "btn-play-again"
+              >
+                Jogar de Novo
+              </button> : null}
+            </div>
 
             <div id="div-mae-choices">
               <div id="choices">
@@ -321,14 +333,6 @@ export default function Game() {
               </button>
             </div>
           </section>
-          <div>
-            { totalPoints ? <button
-              type="button"
-              onClick={ playAgain }
-            >
-              Jogar de Novo
-            </button> : null}
-          </div>
         </article>
 
         <aside id="aside-rankings" key={rankingsInvalidationKey}>
