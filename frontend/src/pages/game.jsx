@@ -8,6 +8,7 @@ import RankingGeral from '../components/rankingGeral';
 import RankingGeralByDay from '../components/rankingGeralByDay';
 import RankingGeralByWeek from '../components/rankingGeralByWeek';
 import RankingGeralByMonth from '../components/rankingGeralByMonth';
+import RPSImgDefault from '../imgs/pedrapapeltesoura.png';
 import Chars from '../services/getChars';
 import { revalidatePath } from 'next/cache'
 import '../styles/game.css';
@@ -30,6 +31,8 @@ export default function Game() {
   const [disabledElementsChoice, setDisabledElementsChoice] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
   const [rankingsInvalidationKey, setRankingsInvalidationKey] = useState(0);
+  const [imgChosen, setImgChosen] = useState(RPSImgDefault);
+  const [imgChosenPC, setImgChosenPc] = useState(RPSImgDefault);
   
   const playAgain = () => {
     setRounds(0);
@@ -112,6 +115,7 @@ export default function Game() {
     setPapelChecked(true);
     setPlayerChoice('');
     setComputerChoice('');
+    setImgChosen(RPSImgDefault);
   }
 
   const confirmRounds = () => {
@@ -146,21 +150,23 @@ export default function Game() {
 
   const gettinPlayerChoice = ({ target }) => {
     const value = target.alt.split(' ')[2];
-    console.log(value);
     setPlayerChoice(value);
     if (value === 'tesoura') {
+      setImgChosen(Chars.tesoura);
       setTesouraChecked(false);
       setPedraChecked(true);
       setPapelChecked(true)
     }
 
     if (value === 'pedra') {
+      setImgChosen(Chars.pedra);
       setPedraChecked(false);
       setTesouraChecked(true);
       setPapelChecked(true)
     }
 
     if (value === 'papel') {
+      setImgChosen(Chars.papel);
       setPapelChecked(false);
       setPedraChecked(true);
       setTesouraChecked(true)
@@ -231,11 +237,11 @@ export default function Game() {
               </div>
 
               <div id="tabela-points">
-                  <h3>Tabela de pontos:</h3>
-                  <p>Vitória = 3pts</p>
-                  <p>Empate = 1pt</p>
-                  <p>Derrota = 0pt</p>
-                </div>
+                <h3>Tabela de pontos:</h3>
+                <p>Vitória = 3pts</p>
+                <p>Empate = 1pt</p>
+                <p>Derrota = 0pt</p>
+              </div>
             </section>  
 
           <section id="section-game">
@@ -264,61 +270,85 @@ export default function Game() {
 
             <div id="div-mae-choices">
               <div id="choices">
-                <label
-                  htmlFor="check-pedra"
-                  className="check-choices"
-                  onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
-                  id={ pedraChecked ? 'check-pedra' : 'check-pedra-checked'}
-                >
-                  <Image
-                    src={ Chars.pedra }
-                    alt='personagem de pedra'
-                    className='img-choices'
+                <div id="box-choices">
+                  <label
+                    htmlFor="check-pedra"
+                    className="check-choices"
+                    onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                    id={ pedraChecked ? 'check-pedra' : 'check-pedra-checked'}
+                  >
+                    <Image
+                      src={ Chars.pedra }
+                      alt='personagem de pedra'
+                      className='img-choices'
+                    />
+                  </label>
+                  <input
+                    type="checkbox"
+                    id="check-pedra"
+                    className="checkbox-choices"
                   />
-                </label>
-                <input
-                  type="checkbox"
-                  id="check-pedra"
-                  className="checkbox-choices"
-                >
-                  
-                </input>
+                      
+                  <label
+                    htmlFor="check-papel"
+                    className="check-choices"
+                    onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                    id={ papelChecked ? 'check-papel' : 'check-papel-checked'}
+                  >
+                    <Image 
+                      src={ Chars.papel } 
+                      alt='personagem de papel'
+                      className='img-choices'
+                    />
+                  </label>
+                  <input
+                    type="checkbox"
+                    id="check-papel"
+                    className="checkbox-choices"
+                  />
 
-                <label
-                  htmlFor="check-papel"
-                  className="check-choices"
-                  onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
-                  id={ papelChecked ? 'check-papel' : 'check-papel-checked'}
-                >
-                  <Image 
-                    src={ Chars.papel } 
-                    alt='personagem de papel'
-                    className='img-choices'
+                  <label
+                    htmlFor="check-tesoura"
+                    className="check-choices"
+                    onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                    value="tesoura"
+                    id={ tesouraChecked ? 'check-tesoura' : 'check-tesoura-checked'}
+                  >
+                    <Image 
+                      src={ Chars.tesoura } 
+                      alt='personagem de tesoura'
+                      className='img-choices'
+                    />
+                  </label>
+                  <input 
+                    type="checkbox"
+                    className="checkbox-choices"
                   />
-                </label>
-                <input
-                  type="checkbox"
-                  id="check-papel"
-                  className="checkbox-choices"
-                />
+                </div>
 
-                <label
-                  htmlFor="check-tesoura"
-                  className="check-choices"
-                  onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
-                  value="tesoura"
-                  id={ tesouraChecked ? 'check-tesoura' : 'check-tesoura-checked'}
-                >
-                  <Image 
-                    src={ Chars.tesoura } 
-                    alt='personagem de tesoura'
-                    className='img-choices'
-                  />
-                </label>
-                <input 
-                  type="checkbox"
-                  className="checkbox-choices"
-                />
+                <div id="box-fight">
+                  <div
+                    id="u-choice"
+                    className="div-fight"
+                  >
+                    <Image
+                      className="imgs-fight"
+                      id="img-fight"
+                      src={ imgChosen}
+                      alt="img alternativa"
+                    />
+                  </div>
+                  <div 
+                    id="pc-choice"
+                    className="div-fight"
+                  >
+                    <Image
+                      className="imgs-fight"
+                      src={ imgChosenPC}
+                      alt="img alternativa"
+                    />
+                  </div>
+                </div>
               </div>
 
               <p>{`Resultado da rodada: ${resultRound}`}</p>
