@@ -4,7 +4,7 @@ import { getRankingGeralByMonthApi } from '../services/api';
 const RankingGeralByMonth = () => {
   const [ranking, setRanking] = useState([]);
 
-  const getAllPlayersByWeek = async () => {
+  const getAllPlayersByMonth = async () => {
     const response = await getRankingGeralByMonthApi();
     const responseSize = response.length
     const DEZ = 10;
@@ -22,7 +22,7 @@ const RankingGeralByMonth = () => {
   }
 
   useEffect(() => {
-    getAllPlayersByWeek();
+    getAllPlayersByMonth();
   }, []);
 
   return (

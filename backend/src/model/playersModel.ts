@@ -51,7 +51,7 @@ const rankingPlayersByDay = async (): Promise<IPlayer[]> => {
     INNER JOIN rpsdb_dev.players as PLA ON PLA.id = GA.username_id
     WHERE DATE_FORMAT(GA.date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d')
     GROUP BY GA.username_id
-    ORDER BY total_points DESC;;`
+    ORDER BY total_points DESC;`
   )
 
   return result;
@@ -63,8 +63,9 @@ const rankingPlayersByWeek = async (): Promise<IPlayer[]> => {
     FROM rpsdb_dev.games as GA
     INNER JOIN rpsdb_dev.players as PLA ON PLA.id = GA.username_id
     WHERE WEEK(GA.date) = WEEK(NOW())
+    AND YEAR(GA.date) = YEAR(NOW())
     GROUP BY GA.username_id
-    ORDER BY total_points DESC;;`
+    ORDER BY total_points DESC;`
   )
 
   return result;
@@ -77,7 +78,7 @@ const rankingPlayersByMonth = async (): Promise<IPlayer[]> => {
     INNER JOIN rpsdb_dev.players as PLA ON PLA.id = GA.username_id
     WHERE DATE_FORMAT(GA.date, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
     GROUP BY GA.username_id
-    ORDER BY total_points DESC;;`
+    ORDER BY total_points DESC;`
   )
 
   return result;

@@ -16,12 +16,12 @@ font-family: 'Vast Shadow', serif; */
 
 body {
   /* background-color: rgb(173, 145, 102); */
-  /* background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Barbarians-reputation.jpg");
-  background-repeat: no-repeat;
+  /* background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Barbarians-reputation.jpg"); */
+  /* background-repeat: no-repeat;
   background-size: cover; */
   background-image: url("../imgs/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
   background-position: center;
 }
 
@@ -132,8 +132,8 @@ body {
 
 @media (max-width: 1115px) {
   body {
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
     background-position: center;
   }
 
@@ -156,9 +156,9 @@ body {
   }
 
   #div-mae-loginRegister {
-    height: 65%;
-    width: 65%;
-    margin-top: -100px;
+    height: 60%;
+    width: 60%;
+    margin-top: -140px;
   }
 
   #div-loginRegister {
@@ -174,8 +174,8 @@ body {
 
 @media (max-width: 700px) { 
   body {
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
     background-position: center;
   }
 
@@ -217,8 +217,8 @@ body {
 @media (max-width: 380px) {
 
   body {
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
     background-position: center;
   }
 
