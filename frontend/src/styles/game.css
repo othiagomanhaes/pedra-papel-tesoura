@@ -15,11 +15,16 @@ font-family: 'Vast Shadow', serif; */
 }
 
 body {
-  background-image: url("../imgs/inferno-masmorra-3.png");
+  /* background-image: url("../imgs/inferno-masmorra-3.png"); */
   /* background-image: url("../imgs/masmorra.jpg"); */
-  background-color: rgba(255, 255, 255, 0.3);
+  height: 100%;  
+}
+
+#div-mother-game {
+  background-color: rgba(131, 48, 48, 0.3);
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
 }
 
 #main-page {

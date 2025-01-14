@@ -8,7 +8,7 @@ import "../styles/index.css";
 export default function Home() {
   const [isLogin, setIsLogin] = useState(true);
   return (
-    <div>
+    <div id="div-mother-home">
       <div id="div-titulos">
         <h1 id="title-pt">Pedra, Papel e Tesoura</h1>
         <h1 id="title-ko">Jokenpo</h1>

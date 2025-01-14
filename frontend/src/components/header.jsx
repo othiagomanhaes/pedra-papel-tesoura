@@ -34,27 +34,27 @@ const Header = () => {
 
   return (
     <header id="header-game">
-        <nav id="nav-header">
-          <ul id="ul-header">
-            <li className="li-header" onClick={ () => router.push('/game')}>Jogo</li>
-            <li className="li-header" onClick={ () => router.push('/myProfile')}>Meu perfil</li>
-            <li className="li-header">Ranking</li>
-            <li className="li-header">História do Jogo</li>
-            <li className="li-header">Desenvolvedor</li>
-          </ul>
-        </nav>
+      <nav id="nav-header">
+        <ul id="ul-header">
+          <li className="li-header" onClick={ () => router.push('/game')}>Jogo</li>
+          <li className="li-header" onClick={ () => router.push('/myProfile')}>Meu perfil</li>
+          <li className="li-header">Ranking</li>
+          <li className="li-header">História do Jogo</li>
+          <li className="li-header">Desenvolvedor</li>
+        </ul>
+      </nav>
 
-        <div id="div-user-header">
-          <img src={ imgPlayer ? imgPlayer : imgDefault } alt="imagem do usuário" id="img-user"/>
-          <p>{ usernamePlayer ? usernamePlayer : playerNameDefault }</p>
-          <button
-            type="text"
-            onClick={ getLogout }
-          >
-            Logout
-          </button>
-        </div>
-      </header>
+      <div id="div-user-header">
+        <img src={ imgPlayer ? imgPlayer : imgDefault } alt="imagem do usuário" id="img-user"/>
+        <p>{ usernamePlayer ? usernamePlayer : playerNameDefault }</p>
+        <button
+          type="text"
+          onClick={ getLogout }
+        >
+          Logout
+        </button>
+      </div>
+    </header>
   )
 }
 

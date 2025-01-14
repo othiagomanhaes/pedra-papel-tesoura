@@ -179,7 +179,7 @@ export default function Game() {
   },[computerChoice, playerChoice, resultRound, actualRound, rounds, tesouraChecked, resultFinal, totalPoints])
 
   return (
-    <>
+    <div id="div-mother-game">
       <Header />
 
       <main id="main-page">
@@ -372,7 +372,7 @@ export default function Game() {
             <RankingGeralByMonth />
         </aside>
       </main>
-    </>
+    </div>
   )
 }
 
