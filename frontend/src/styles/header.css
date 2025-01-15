@@ -18,6 +18,10 @@
   position: relative; /* Necessário para o menu hamburguer */
 }
 
+.hidden {
+  display: none;
+}
+
 /* Estilo da navegação */
 #nav-header {
   display: flex;
