@@ -231,6 +231,7 @@ export default function Game() {
                   id="btn-rounds"
                   onClick={ confirmRounds }
                   disabled={ disabledBtnConfirmar }
+                  aria-label="Confirmar escolha de rodadas"
                 >
                   Confirmar
                 </button>
@@ -238,9 +239,11 @@ export default function Game() {
 
               <div id="tabela-points">
                 <h3>Tabela de pontos:</h3>
-                <p>Vitória = 3pts</p>
-                <p>Empate = 1pt</p>
-                <p>Derrota = 0pt</p>
+                <div id="son-tabela-points">
+                  <p>Vitória: 3pts</p>
+                  <p>Empate: 1pt</p>
+                  <p>Derrota: 0pt</p>
+                </div>
               </div>
             </section>  
 
