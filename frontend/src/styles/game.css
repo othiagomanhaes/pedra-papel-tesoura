@@ -340,12 +340,12 @@ body {
     height: 50%;
   }
 
-  #aside-rankings {
+  /* #aside-rankings {
     width: 100%;
     height: auto;
     flex-direction: column;
     align-items: center;
-  }
+  } */
 
   #div-mae-choices {
     width: 95%;
@@ -374,8 +374,9 @@ body {
     display: flex;
     /* flex-wrap: wrap; */
     justify-content: space-around;
+    align-items: center;
     margin: 2% auto;
-    height: 600px;
+    height: auto;
   }
 }
 

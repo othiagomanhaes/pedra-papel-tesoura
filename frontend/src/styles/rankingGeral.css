@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.ranking-geral {
+  border: 1px solid blue;
+}
+
+#ranking-geral-h3 {
+  text-align: center;
+  /* color: blue; */
+}

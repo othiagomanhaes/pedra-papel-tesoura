@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getRankingGeralApi } from '../services/api';
 
+import '../styles/rankingGeral.css';
+
 const RankingGeral = () => {
   const [ranking, setRanking] = useState([]);
 
@@ -27,7 +29,7 @@ const RankingGeral = () => {
 
   return (
     <div className="ranking-geral">
-      <h3>Ranking Geral</h3>
+      <h3 id="ranking-geral-h3">Ranking Geral</h3>
       <table>
         <thead>
           <tr>

@@ -10,7 +10,7 @@ import RankingGeralByWeek from '../components/rankingGeralByWeek';
 import RankingGeralByMonth from '../components/rankingGeralByMonth';
 import RPSImgDefault from '../imgs/pedrapapeltesoura.png';
 import Chars from '../services/getChars';
-import { revalidatePath } from 'next/cache'
+// import { revalidatePath } from 'next/cache'
 import '../styles/game.css';
 
 export default function Game() {
