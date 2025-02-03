@@ -13,13 +13,13 @@ const RankingGeral = () => {
     const lefting = DEZ - responseSize;
     const objDefault = {image: '', username: '', level: '', total_points: ''};
 
-    if (responseSize > 10) {
-      response.slice(0, 9);
-      setRanking(response);
+    if (responseSize >= 10) {     
+      setRanking(response.slice(0, 10));
     } else {
       for (let i=0 ; i < lefting ; i+=1) {
         setRanking([...response , objDefault]);
       }
+      console.log(ranking, "ranking");
     }
   }
 
