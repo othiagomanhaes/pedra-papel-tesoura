@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: node:16-alpine
+    image: node:20-alpine
     container_name: rps_front
     working_dir: /app
     volumes: 
@@ -19,7 +19,7 @@ services:
       - backend
 
   backend:
-    image: node:16-alpine
+    image: node:20-alpine
     container_name: rps_back
     working_dir: /app
     volumes:

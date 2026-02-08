@@ -2,39 +2,44 @@ import { useEffect, useState } from "react";
 import { getStatisticById, getRankingGeralApi } from '../services/api';
 import Loading from "./loading";
 
-const Historic = () => {
+const Historic = ({ playerId: playerIdProp }) => {
 
   const [player, setPlayer] = useState();
   const [playerPositionState, setPlayerPositionState] = useState('-');
+  const [loading, setLoading] = useState(true);
 
-  const getInfoPLayer = async () => {
-    const playerId = localStorage.getItem("user_id");
+  const getInfoPlayer = async () => {
+    const playerId = playerIdProp || localStorage.getItem("user_id");
     if (playerId) {
-      const playerHistoric = await getStatisticById(JSON.parse(playerId));
-      setPlayer(playerHistoric[0]);
+      const id = typeof playerId === 'string' ? JSON.parse(playerId) : playerId;
+      const playerHistoric = await getStatisticById(id);
+      if (playerHistoric && playerHistoric[0]) {
+        setPlayer(playerHistoric[0]);
 
-      const rankingGeral = await getRankingGeralApi();
-      const playerPosition = rankingGeral.forEach((ele, ind) => {
-        if (ele.id === Number(playerId)) {
-          setPlayerPositionState(ind + 1)
+        const rankingGeral = await getRankingGeralApi();
+        if (Array.isArray(rankingGeral)) {
+          const position = rankingGeral.findIndex((ele) => ele.id === id || ele.id === Number(id));
+          setPlayerPositionState(position >= 0 ? position + 1 : '-');
         }
-      })
+      } else {
+        setPlayer(null);
+      }
     }
-
+    setLoading(false);
   }
 
   useEffect(() => {
-    getInfoPLayer();
-  },[])
+    getInfoPlayer();
+  }, [playerIdProp])
 
   useEffect(() => {
   },[player, playerPositionState])
 
   return(
     <>
-      <h1>Historic</h1>
+      <h1>Histórico</h1>
       <div>
-        { player ? 
+        { loading ? <Loading /> : player ? 
           <table>
             <thead>
               <tr>
@@ -62,7 +67,7 @@ const Historic = () => {
               </tr>
             </tbody>
 
-          </table> : <Loading />}
+          </table> : <p className="historic-empty">Este jogador ainda não possui histórico de partidas.</p>}
       </div>
     </>
   )

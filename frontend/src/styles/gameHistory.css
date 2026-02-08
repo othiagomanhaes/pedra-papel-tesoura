@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Josefin+Sans&display=swap');
+
+#game-history-page {
+  background-color: rgba(131, 48, 48, 0.3);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#game-history-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+#game-history-main h1 {
+  text-align: center;
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: #2c1810;
+  margin-bottom: 2rem;
+}
+
+#game-history-content {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 235, 220, 0.98));
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+}
+
+#game-history-content .intro {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2c1810;
+  margin-bottom: 2rem;
+}
+
+#game-history-content section {
+  margin-bottom: 2rem;
+}
+
+#game-history-content section:last-child {
+  margin-bottom: 0;
+}
+
+#game-history-content h2 {
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #4a3728;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid rgba(236, 157, 66, 0.5);
+}
+
+#game-history-content p {
+  line-height: 1.7;
+  color: #4a3728;
+}
+
+#game-history-content ul {
+  margin: 0.5rem 0 0 1.5rem;
+  line-height: 1.8;
+  color: #4a3728;
+}
+
+#game-history-content li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  #game-history-main {
+    padding: 1rem;
+  }
+
+  #game-history-content {
+    padding: 1.5rem;
+  }
+}

@@ -43,6 +43,16 @@ const playerById = async (id: number) => {
   return player;
 }
 
+const playerByEmail = async (email: string) => {
+  const player = await PlayerModel.playerByEmail(email);
+  return player;
+}
+
+const playerByUsername = async (username: string) => {
+  const player = await PlayerModel.playerByUsername(username);
+  return player;
+}
+
 const statisticPlayerById = async (id: number) => {
   const statisc = await statisticModel.selecStatisticById(id);
   return statisc;
@@ -77,6 +87,8 @@ const PlayerService = {
   rankingPlayersByWeek,
   rankingPlayersByMonth,
   playerById,
+  playerByEmail,
+  playerByUsername,
   updateEmailById,
   updateUsernameById,
   deleteById,

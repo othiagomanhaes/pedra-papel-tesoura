@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Josefin+Sans&display=swap');
+
+#ranking-page {
+  background-color: rgba(131, 48, 48, 0.3);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#ranking-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+#ranking-page-title {
+  text-align: center;
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: #2c1810;
+  margin-bottom: 0.5rem;
+}
+
+#ranking-page-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #4a3728;
+  margin-bottom: 2rem;
+}
+
+#ranking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+@media (min-width: 768px) {
+  #ranking-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  #ranking-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  #ranking-main {
+    padding: 1rem;
+  }
+
+  #ranking-grid {
+    grid-template-columns: 1fr;
+  }
+}

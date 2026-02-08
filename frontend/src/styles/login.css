@@ -163,7 +163,95 @@ font-family: 'Vast Shadow', serif; */
   cursor: not-allowed;
   background-color: rgb(236, 194, 146);
 }
-  
+
+#h3-username {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-family: 'Arvo', serif;
+  color: #2c1810;
+  text-align: center;
+}
+
+.login-email-hint {
+  font-size: 0.9rem;
+  color: #4a3728;
+  margin-bottom: 1rem;
+}
+
+.login-message {
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.btn-back-google {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(115, 92, 60, 0.5);
+  border-radius: 8px;
+  font-family: 'Josefin Sans', sans-serif;
+  cursor: pointer;
+  color: #4a3728;
+}
+
+.btn-back-google:hover {
+  background: rgba(115, 92, 60, 0.1);
+}
+
+#google-login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  min-height: 60px;
+  padding: 8px 12px;
+  background-color: white;
+  border: 3px solid rgba(115, 92, 60, 0.9);
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+#google-login-wrapper:hover {
+  box-shadow: 0 2px 12px rgba(115, 92, 60, 0.25);
+  border-color: rgba(115, 92, 60, 1);
+}
+
+#google-login-wrapper div {
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Ajusta o iframe do botão Google para combinar com o container */
+#google-login-wrapper iframe {
+  border-radius: 8px;
+}
+
+@media (max-width: 1115px) {
+  #google-login-wrapper {
+    width: 75%;
+    min-height: 50px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  #google-login-wrapper {
+    width: 80%;
+  }
+}
+
+@media (max-width: 380px) {
+  #google-login-wrapper {
+    width: 85%;
+    padding: 6px 8px;
+  }
+}
+
 @media (max-width: 380px) {
   #div-login {
     height: 70%;

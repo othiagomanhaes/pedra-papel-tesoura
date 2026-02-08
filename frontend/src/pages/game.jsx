@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import getTheWinner from '../services/getTheWinner';
 import Header from '../components/header';
@@ -33,19 +33,24 @@ export default function Game() {
   const [rankingsInvalidationKey, setRankingsInvalidationKey] = useState(0);
   const [imgChosen, setImgChosen] = useState(RPSImgDefault);
   const [imgChosenPC, setImgChosenPc] = useState(RPSImgDefault);
+  const [isSpinning, setIsSpinning] = useState(false);
+  const slotIntervalRef = useRef(null);
   
   const playAgain = () => {
     setRounds(0);
     setTotalPoints(0);
     setResultFinal([]);
     setActualRound(0);
-    setResultRound('')
+    setResultRound('');
+    setImgChosen(RPSImgDefault);
+    setImgChosenPc(RPSImgDefault);
     setCincoChecked(true);
     setDezChecked(true);
     setQuinzeChecked(true);
     setDisabledChoiceRounds(true);
     setDisabledElementsChoice(false);
-    setRankingsInvalidationKey(rankingsInvalidationKey + 1)
+    setIsSpinning(false);
+    setRankingsInvalidationKey(rankingsInvalidationKey + 1);
   }
 
   const getUserId = () => {
@@ -94,18 +99,64 @@ export default function Game() {
   const finishingRound = () => {
     if (rounds > actualRound) {
       setActualRound(actualRound + 1);
+      setDisabledElementsChoice(true);
+      setTimeout(() => {
+        setImgChosen(RPSImgDefault);
+        setImgChosenPc(RPSImgDefault);
+      }, 1500);
     } else {
       setPlayerChoice('');
       setComputerChoice('');
       setDisabledElementsChoice(false);
-    }   
+      setImgChosen(RPSImgDefault);
+      setImgChosenPc(RPSImgDefault);
+    }
   }
 
-  const makeComputerChoice = () => {
+  const runSlotAnimation = (finalChoice) => {
+    return new Promise((resolve) => {
+      const options = ['pedra', 'papel', 'tesoura'];
+      const images = { pedra: Chars.pedra, papel: Chars.papel, tesoura: Chars.tesoura };
+      let cycleCount = 0;
+      const totalCycles = 12;
+      let delay = 40;
+
+      const cycle = () => {
+        cycleCount++;
+        const option = options[cycleCount % 3];
+        setImgChosenPc(images[option]);
+
+        if (cycleCount >= totalCycles) {
+          setImgChosenPc(images[finalChoice]);
+          resolve();
+          return;
+        }
+        delay = Math.min(delay + 8, 90);
+        slotIntervalRef.current = setTimeout(cycle, delay);
+      };
+
+      slotIntervalRef.current = setTimeout(cycle, delay);
+    });
+  };
+
+  const makeComputerChoice = async () => {
+    if (isSpinning) return;
+
     const jukenpo = ['pedra', 'papel', 'tesoura'];
     const pcChoice = jukenpo[Math.floor(Math.random() * jukenpo.length)];
-    setComputerChoice(pcChoice);
+
+    setIsSpinning(true);
+    setResultRound('');
+
+    await runSlotAnimation(pcChoice);
+
+    if (slotIntervalRef.current) {
+      clearTimeout(slotIntervalRef.current);
+      slotIntervalRef.current = null;
+    }
+
     const answer = getTheWinner(playerChoice, pcChoice);
+    setComputerChoice(pcChoice);
     setResultRound(answer);
     setResultFinal((prevState) => [...prevState, answer]);
 
@@ -115,8 +166,8 @@ export default function Game() {
     setPapelChecked(true);
     setPlayerChoice('');
     setComputerChoice('');
-    setImgChosen(RPSImgDefault);
-  }
+    setIsSpinning(false);
+  };
 
   const confirmRounds = () => {
     setDisabledChoiceRounds(false);
@@ -178,6 +229,14 @@ export default function Game() {
     sendTheResult();
   },[computerChoice, playerChoice, resultRound, actualRound, rounds, tesouraChecked, resultFinal, totalPoints])
 
+  useEffect(() => {
+    return () => {
+      if (slotIntervalRef.current) {
+        clearTimeout(slotIntervalRef.current);
+      }
+    };
+  }, [])
+
   return (
     <div id="div-mother-game">
       <Header />
@@ -186,7 +245,8 @@ export default function Game() {
           
         <article id="article-main">
           <section id="section-rounds">
-            <h2 id="titulo-choice">Escolha quantas rodadas</h2>
+            <span className="step-badge">Passo 1</span>
+            <h2 id="titulo-choice">Escolha a quantidade de rodadas (5, 10 ou 15)</h2>
               <div id="div-mae-rounds">
                 <div id="rounds">
                   <label
@@ -248,6 +308,7 @@ export default function Game() {
             </section>  
 
           <section id="section-game">
+            <span className="step-badge">Passo 2 e 3</span>
             <h3 id="titulo-rounds">{`Rodada ${actualRound} de ${rounds}`}</h3>
 
             <div id="results">
@@ -265,19 +326,21 @@ export default function Game() {
               { totalPoints ? <button
                 type="button"
                 onClick={ playAgain }
-                id = "btn-play-again"
+                id="btn-play-again"
               >
+                <img src="/coin.svg" alt="" className="coin-icon" />
                 Jogar de Novo
               </button> : null}
             </div>
 
             <div id="div-mae-choices">
+              <p className="step-hint">Escolha pedra, papel ou tesoura e clique em Jogar</p>
               <div id="choices">
                 <div id="box-choices">
                   <label
                     htmlFor="check-pedra"
                     className="check-choices"
-                    onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                    onClick={ (disabledElementsChoice && !isSpinning) ? gettinPlayerChoice : null }
                     id={ pedraChecked ? 'check-pedra' : 'check-pedra-checked'}
                   >
                     <Image
@@ -295,7 +358,7 @@ export default function Game() {
                   <label
                     htmlFor="check-papel"
                     className="check-choices"
-                    onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                    onClick={ (disabledElementsChoice && !isSpinning) ? gettinPlayerChoice : null }
                     id={ papelChecked ? 'check-papel' : 'check-papel-checked'}
                   >
                     <Image 
@@ -313,7 +376,7 @@ export default function Game() {
                   <label
                     htmlFor="check-tesoura"
                     className="check-choices"
-                    onClick={ disabledElementsChoice ? gettinPlayerChoice : null }
+                    onClick={ (disabledElementsChoice && !isSpinning) ? gettinPlayerChoice : null }
                     value="tesoura"
                     id={ tesouraChecked ? 'check-tesoura' : 'check-tesoura-checked'}
                   >
@@ -330,26 +393,32 @@ export default function Game() {
                 </div>
 
                 <div id="box-fight">
-                  <div
-                    id="u-choice"
-                    className="div-fight"
-                  >
-                    <Image
-                      className="imgs-fight"
-                      id="img-fight"
-                      src={ imgChosen}
-                      alt="img alternativa"
-                    />
+                  <div className="choice-label-wrapper">
+                    <span className="choice-label">Você</span>
+                    <div
+                      id="u-choice"
+                      className="div-fight"
+                    >
+                      <Image
+                        className="imgs-fight"
+                        id="img-fight"
+                        src={ imgChosen}
+                        alt="img alternativa"
+                      />
+                    </div>
                   </div>
-                  <div 
-                    id="pc-choice"
-                    className="div-fight"
-                  >
-                    <Image
-                      className="imgs-fight"
-                      src={ imgChosenPC}
-                      alt="img alternativa"
-                    />
+                  <div className="choice-label-wrapper">
+                    <span className="choice-label">Computador</span>
+                    <div
+                      id="pc-choice"
+                      className={`div-fight ${isSpinning ? 'slot-spinning' : ''}`}
+                    >
+                      <Image
+                        className="imgs-fight"
+                        src={ imgChosenPC}
+                        alt="img alternativa"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -359,10 +428,10 @@ export default function Game() {
               <button
                 type="button"
                 onClick={ makeComputerChoice }
-                disabled={ playerChoice.length === 0 }
+                disabled={ playerChoice.length === 0 || isSpinning }
                 id="btn-jogar"
               >
-                Jogar
+                { isSpinning ? 'Girando...' : 'Jogar' }
               </button>
             </div>
           </section>

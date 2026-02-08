@@ -1,12 +1,10 @@
-import { useState } from 'react';
+import Link from 'next/link';
 import Login from '../components/login';
-import Register from '../components/register';
 import Image from 'next/image';
 import jokenpo from '../imgs/jokenpo.png';
-import "../styles/index.css";
+import '../styles/index.css';
 
 export default function Home() {
-  const [isLogin, setIsLogin] = useState(true);
   return (
     <div id="div-mother-home">
       <div id="div-titulos">
@@ -14,25 +12,22 @@ export default function Home() {
         <h1 id="title-ko">Jokenpo</h1>
         <h1 id="title-en">Rock, Paper and Scissor</h1>
       </div>
-      <h1 id="h1-loginRegister">Você não precisa de senha, apenas um <span className="span-h1">usuário</span> e <span className="span-h1">email</span>!!</h1>
+      <h1 id="h1-loginRegister">Entre com sua conta <span className="span-h1">Google</span> para jogar!</h1>
       <div id="main-div">
-        <Image 
-          src={ jokenpo }
+        <Image
+          src={jokenpo}
           alt="jokenpo"
           id="img-jokenpo"
         />
         <div id="div-mae-loginRegister">
           <div id="div-loginRegister">
-            { isLogin ? <Login /> : <Register /> }
-            <button
-              id="btn-loginRegister"
-              onClick={ () => { setIsLogin(!isLogin) } }
-            >
-              { isLogin ? 'Primeiro Cadastro' : 'Vá para Login' }
-            </button>
+            <Login />
           </div>
+          <Link href="/sobre" id="link-sobre-desenvolvedor">
+            Sobre o desenvolvedor
+          </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }

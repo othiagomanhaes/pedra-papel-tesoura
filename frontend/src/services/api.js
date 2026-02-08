@@ -4,21 +4,24 @@ const api = axios.create({
   baseURL: 'http://localhost:3006/'
 })
 
-export const getLogin = async (username, email) => {
+export const googleLogin = async (credential) => {
   try {
-    const data = await api.post('http://localhost:3006/login', {username, email});
+    const { data } = await api.post('http://localhost:3006/auth/google', { credential });
     return data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data || error;
   }
 }
 
-export const getRegister = async (username, email) => {
+export const googleRegister = async (credential, username) => {
   try {
-    const data = await api.post('http://localhost:3006/register', {username, email});
+    const { data } = await api.post('http://localhost:3006/auth/google/register', {
+      credential,
+      username,
+    });
     return data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data || error;
   }
 }
 
@@ -82,6 +85,24 @@ export const getStatisticById = async (id) => {
     return statiscPlayer;
   } catch (error) {
     return error;
+  }
+}
+
+export const updatePlayerBio = async (id, bio) => {
+  try {
+    const { data } = await api.post('http://localhost:3006/player/editBio', { id, bio });
+    return data;
+  } catch (error) {
+    return error.response?.data || error;
+  }
+}
+
+export const updatePlayerImage = async (id, image) => {
+  try {
+    const { data } = await api.post('http://localhost:3006/player/editImage', { id, image });
+    return data;
+  } catch (error) {
+    return error.response?.data || error;
   }
 }
 

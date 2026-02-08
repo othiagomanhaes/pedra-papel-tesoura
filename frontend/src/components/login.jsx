@@ -1,92 +1,128 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { getLogin } from '../services/api';
-import "../styles/login.css";
+import { GoogleLogin } from '@react-oauth/google';
+import { googleLogin, googleRegister } from '../services/api';
+import '../styles/login.css';
 
 export default function Login() {
-  const [isDisabled, setDisabled] = useState(true);
+  const [needsUsername, setNeedsUsername] = useState(false);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
-  const [notFoundUser, setNotFoundUser] = useState('');
+  const [credential, setCredential] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const validateButton = () => {
-    const validaUsername = username.length >= 3;
-    const reg = /\S+@\S+\.\S+/;
-    const validaEmail = reg.test(email);
+  const handleGoogleSuccess = async (credentialResponse) => {
+    setLoading(true);
+    setMessage('');
+    const idToken = credentialResponse.credential;
 
-    (validaEmail && validaUsername) ? setDisabled(false) : setDisabled(true)
-
-  }
-
-  const controlGeneralState = ({ target }) => {
-    const { name, value } = target;
-    if (name === 'username') setUsername(value);
-    if (name === 'email') setEmail(value);
-  }
-
-  const makeLogin = async () => {
-    const response = await getLogin(username, email);
-    if (response.status === 200) {
-      const { data: { player } } = response;
-      localStorage.setItem("user_id", JSON.stringify(player[0].id));
-      router.push('/game');
-    } else {
-      const { message } = response;
-      setNotFoundUser(message);
+    try {
+      const response = await googleLogin(idToken);
+      if (response?.player) {
+        localStorage.setItem('user_id', JSON.stringify(response.player[0].id));
+        router.push('/game');
+      } else if (response?.needsUsername) {
+        setNeedsUsername(true);
+        setEmail(response.email);
+        setCredential(idToken);
+      } else {
+        setMessage(response?.message || 'Erro ao fazer login');
+      }
+    } catch (error) {
+      setMessage('Erro ao fazer login. Tente novamente.');
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
-  useEffect(() => {
-    validateButton();
-  }, [email, username])
+  const handleGoogleError = () => {
+    setMessage('Erro ao conectar com Google. Tente novamente.');
+  };
+
+  const handleUsernameSubmit = async (e) => {
+    e.preventDefault();
+    if (username.length < 3) {
+      setMessage('O nome de usuário deve ter pelo menos 3 caracteres');
+      return;
+    }
+    setLoading(true);
+    setMessage('');
+
+    try {
+      const response = await googleRegister(credential, username.trim());
+      if (response?.player) {
+        localStorage.setItem('user_id', JSON.stringify(response.player[0].id));
+        router.push('/game');
+      } else {
+        setMessage(response?.message || 'Erro ao criar conta');
+      }
+    } catch (error) {
+      setMessage('Erro ao criar conta. Tente novamente.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (needsUsername) {
+    return (
+      <div id="div-login">
+        <h3 id="h3-username">Escolha seu nome de usuário</h3>
+        <p className="login-email-hint">Email: {email}</p>
+        <form id="form-login" onSubmit={handleUsernameSubmit}>
+          <input
+            type="text"
+            id="username-user"
+            className="input-login"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Nome de usuário (mín. 3 caracteres)"
+            autoComplete="off"
+            minLength={3}
+          />
+          {message && <p className="login-message">{message}</p>}
+          <button
+            type="submit"
+            disabled={loading || username.length < 3}
+            id="btn-entrar"
+          >
+            {loading ? 'Criando conta...' : 'Confirmar'}
+          </button>
+        </form>
+        <button
+          type="button"
+          className="btn-back-google"
+          onClick={() => {
+            setNeedsUsername(false);
+            setUsername('');
+            setCredential('');
+            setMessage('');
+          }}
+        >
+          Voltar
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div id="div-login">
-      {/* <h3 id="h3-login">Login</h3> */}
-      <form 
-        action=""
-        id="form-login"
-      >
-        <label 
-          htmlFor="username-user"
-        >
-        </label>
-        <input
-          type="text"
-          id="username-user"
-          className="input-login"
-          value={ username }
-          name="username"
-          onChange={ controlGeneralState }
-          placeholder="Nome de usuário"
-          autoComplete='off'
-        />
-
-        <label 
-          htmlFor="email-user"
-        >
-        </label>
-        <input
-          type="email"
-          id="email-user"
-          className="input-login"
-          value={ email }
-          name="email"
-          onChange={ controlGeneralState }
-          placeholder="Seu email"
-          autoComplete='off'
-        />
-        <p>{ notFoundUser ? notFoundUser : ''}</p>
-        <button
-          type="button"
-          disabled={ isDisabled }
-          onClick={ makeLogin }
-          id="btn-entrar"
-        >
-          Entrar
-        </button>
+      <form id="form-login">
+        <div id="google-login-wrapper">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap={false}
+            theme="outline"
+            size="large"
+            text="continue_with"
+            shape="rectangular"
+            locale="pt-BR"
+          />
+        </div>
+        {message && <p className="login-message">{message}</p>}
       </form>
     </div>
-  )
+  );
 }
